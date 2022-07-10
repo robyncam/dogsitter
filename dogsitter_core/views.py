@@ -41,6 +41,11 @@ def login(request):
     return render(request, 'login.html', context)
 
 
+def logout(request):
+    auth.logout(request)
+    return redirect('home')
+
+
 def profile(request):
     form = ProfileForm()
     if request.method == "POST":
