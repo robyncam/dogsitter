@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Profile</title>
 </head>
 <body>
-<h2> Create an Account with Dogsitters!</h2>
-<form method="POST">
+
+
+<form method = "POST">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit">
-
 
 </form>
-
 
 </body>
 </html>
