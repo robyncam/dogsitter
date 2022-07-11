@@ -34,7 +34,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('/')
+            return redirect('home')
         else:
             messages.info(request, "Credientials do not match, try again")
             return redirect('login')

@@ -61,6 +61,9 @@
             </div>
         </div>
     </header>
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
     {%block content %}{% endblock content %}
 </body>
 
