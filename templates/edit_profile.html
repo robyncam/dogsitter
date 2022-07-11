@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Edit Profile</title>
 </head>
 <body>
 
-<h1>{{user.first_name}} {{user.last_name}}</h1>
+
+<h1>{{user.first_name}} {{user.last_name}} {{pk}}</h1>
 
 <form method = "POST">
     {% csrf_token %}

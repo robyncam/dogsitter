@@ -9,7 +9,6 @@ class Profile(models.Model):
     cost = models.DecimalField(decimal_places=2, max_digits=7)
     is_dog_sitter = models.BooleanField(default=False)
     bio = models.TextField(max_length=1000000)
-    # photo = models.ImageField()
 
     def __str__(self):
-        return self.user
+        return str(self.user)

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{%block title%}
+    Profile Page
+{% endblock %}
+
+{% block extra_css %}{% endblock %}
+
+{%block content %}
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <h3> About </h3>
+    <h4> I am located in: {{profile.location}} </h4>
+    <h4>I charge: {{profile.cost}} per day</h4>
+    <h4> A little about me: </h4>
+    <p>{{user.profile.bio}}</p>
+
+    <p> Want to update your profile?</p>
+<a href = "{% url 'edit_profile' %}"> here </a>
+{% endblock %}

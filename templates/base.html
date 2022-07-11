@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}{%endblock title%}</title>
+    <style>
+
+        .main-header {
+            background: #f9dcc4;
+            height: 100px;
+            }
+
+        .container {
+            max-width: 100%;
+            padding: 20px;
+            margin: 0 auto;
+            justify-content: space-around;
+            display: flex;
+        }
+
+        .main-nav {
+            padding: 20px;
+            margin: 0 20px 0 auto;
+            justify-content: end;
+            display: flex;
+        }
+
+        .top-buttons {
+            background: #d8e2dc;
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: 1.5px solid black;
+            height: 40px;
+            margin: 10px 10px;
+        }
+        {% block extra_css %}{% endblock %}
+
+    </style>
+</head>
+<body>
+    <header class = "main-header">
+        <div class ="container">
+            <h1> DogSitters</h1>
+            <div class = "main-nav">
+                {% if user.is_authenticated %}
+                <h4> Welcome {{user.username}}!</h4>
+                {% else %}
+                <h4> Welcome!</h4>
+                {% endif %}
+                <button class ="top-buttons"><a href= "{% url 'home' %}">Home</a></button>
+                {% if user.is_authenticated %}
+                <button class ="top-buttons"><a href= "{% url 'logout' %}">Logout</a></button>
+                {% else %}
+                <button class="top-buttons"><a href= "{% url 'login' %}">Login</a></button>
+                {% endif %}
+                {% if user.profile and user.is_authenticated %}
+                <button class="top-buttons"><a href = "{% url 'profile-page' %}"> Profile Page </a></button>
+                {% elif user.is_authenticated%}
+                <button class="top-buttons"><a href = "{% url 'profile' %}"> Create Profile Page </a></button>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    {%block content %}{% endblock content %}
+</body>
+
+</html>

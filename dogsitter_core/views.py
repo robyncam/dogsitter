@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
 from .forms import RegisterForm, ProfileForm, LoginForm
+from django.contrib.auth.decorators import login_required
+from . import models
 
 
 def home(request):
@@ -46,15 +48,41 @@ def logout(request):
     return redirect('home')
 
 
+@login_required
 def profile(request):
     form = ProfileForm()
     if request.method == "POST":
         form = ProfileForm(request.POST)
         if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
+            new_profile = form.save(commit=False)
+            new_profile.user = request.user
+            new_profile.save()
             return redirect('home')
 
     context = {'form': form}
     return render(request, 'profile.html', context)
+
+
+#
+@login_required
+def edit_profile(request):
+    profile = models.Profile.objects.get(user_id=1)
+    form = ProfileForm(instance=profile)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.save()
+            return redirect('profile-page')
+
+    context = {'form': form}
+    return render(request, 'edit_profile.html', context)
+
+
+
+
+
+@login_required
+def profilepage(request):
+    context = {'profile': request.user.profile}
+    return render(request, 'profilepage.html', context)
