@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+{% extends 'base.html' %}
 
-</head>
-<body>
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
 {% for message in messages %}
 {{message}}
 {% endfor %}
@@ -16,7 +15,4 @@
 </form>
 
 <p>Don't have an account? Get one <a href = "{% url 'register' %}">here</a></p>
-
-
-</body>
-</html>
+{% endblock %}

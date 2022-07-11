@@ -66,14 +66,15 @@ def profile(request):
 #
 @login_required
 def edit_profile(request):
-    profile = models.Profile.objects.get(user_id=1)
+    current_user = request.user
+    profile = models.Profile.objects.get(user_id=current_user.id)
     form = ProfileForm(instance=profile)
     if request.method == "POST":
         form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.save()
-            return redirect('profile-page')
+            return redirect('profile_page')
 
     context = {'form': form}
     return render(request, 'edit_profile.html', context)

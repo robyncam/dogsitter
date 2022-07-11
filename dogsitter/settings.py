@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dogsitter_core'
+    'dogsitter_core',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [

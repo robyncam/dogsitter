@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Profile</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
 
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block content %}
 <h1>{{user.first_name}} {{user.last_name}} {{pk}}</h1>
 
 <form method = "POST">
@@ -15,5 +14,4 @@
 <input type="submit">
 </form>
 
-</body>
-</html>
+{% endblock %}

@@ -54,7 +54,7 @@
                 <button class="top-buttons"><a href= "{% url 'login' %}">Login</a></button>
                 {% endif %}
                 {% if user.profile and user.is_authenticated %}
-                <button class="top-buttons"><a href = "{% url 'profile-page' %}"> Profile Page </a></button>
+                <button class="top-buttons"><a href = "{% url 'profile_page' %}"> Profile Page </a></button>
                 {% elif user.is_authenticated%}
                 <button class="top-buttons"><a href = "{% url 'profile' %}"> Create Profile Page </a></button>
                 {% endif %}
