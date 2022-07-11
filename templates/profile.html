@@ -6,9 +6,9 @@
 
 {% block content %}
     <h1>{{user.first_name}} {{user.last_name}}</h1>
-        <form method = "POST">
-            {% csrf_token %}
-            {{form.as_p}}
+    <form method = "POST">
+        {% csrf_token %}
+        {{form.as_p}}
         <input type="submit">
-        </form>
+    </form>
 {% endblock %}
