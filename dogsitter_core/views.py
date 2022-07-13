@@ -34,10 +34,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            if hasattr(request.user, 'profile'):
-                return redirect('home')
-            else:
-                return redirect('profile')
+            return redirect('home')
         else:
             messages.info(request, "Credentials do not match, try again")
             return redirect('login')
