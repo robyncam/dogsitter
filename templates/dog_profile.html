@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Dog Profile
+{% endblock %}
+
+{% block content %}
+
+<h4>hi my name is {{dog.name}}</h4>
+<h4> Weight: {{dog.weight}} pounds</h4>
+
+{% if dog.good_with_cats %}
+    <p>I am good with cats</p>
+{% else %}
+    <p>I am not good with cats</p>
+{% endif %}
+{% if dog.good_with_kids %}
+    <p>I am good with kids</p>
+{% else %}
+    <p>I am not so great with kids</p>
+{% endif %}
+{% if dog.good_with_dogs %}
+ <p>I am good with dogs</p>
+{% else %}
+    <p>I am not good with dogs</p>
+{% endif %}
+
+<h4> A little about me: {{dog.bio}} </h4>
+
+<h3> Age: {{dog.age}} old </h3>
+
+{% endblock %}

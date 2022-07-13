@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
 from .forms import RegisterForm, ProfileForm, LoginForm, DogForm
 from django.contrib.auth.decorators import login_required
 from . import models
+
+
 
 
 def home(request):
@@ -82,7 +84,11 @@ def edit_profile(request):
 
 @login_required
 def profilepage(request):
-    context = {'profile': request.user.profile}
+    current_user = request.user
+    if current_user.dog_set:
+        dogs = current_user.dog_set.all()
+
+    context = {'profile': request.user.profile, 'dogs': dogs}
     return render(request, 'profilepage.html', context)
 
 
@@ -99,3 +105,10 @@ def add_dog(request):
 
     context ={'form':form}
     return render(request, "add_dog.html", context)
+
+
+def dog_profile(request, dog_pk):
+    dog_profile = get_object_or_404(models.Dog, pk=dog_pk)
+    context = {'dog': dog_profile}
+
+    return render(request, 'dog_profile.html', context)
