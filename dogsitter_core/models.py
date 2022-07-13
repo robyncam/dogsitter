@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.fields import DateField
+from datetime import date
+
 
 
 class Profile(models.Model):
@@ -17,8 +18,12 @@ class Profile(models.Model):
 class Dog(models.Model):
     user = models.ForeignKey(User, models.CASCADE)
     name = models.CharField(max_length=200)
-    dob = models.DateField()
     weight = models.DecimalField(decimal_places=2, max_digits=7)
-    good_with_cats = models.BooleanField(default=None)
-    good_with_kids = models.BooleanField(default=None)
+    good_with_cats = models.BooleanField(default=False)
+    good_with_kids = models.BooleanField(default=False)
+    good_with_dogs = models.BooleanField(default=False)
     bio = models.TextField(max_length=100000)
+    dob = models.DateField()
+
+    def __str__(self):
+        return str(self.name)

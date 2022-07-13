@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile, Dog
+from datetime import date
 
 
 class RegisterForm(forms.ModelForm):
@@ -39,23 +40,21 @@ class LoginForm(forms.ModelForm):
         model = User
         fields = ['username']
 
+
 class DogForm(forms.ModelForm):
+    current_year = int(date.today().year)
+    YEAR_CHOICES = list(range(current_year, (current_year - 25), -1))
+    dob = forms.DateField(label="Date of Birth: ", widget=forms.SelectDateWidget(years=YEAR_CHOICES))
+
     class Meta:
         model = Dog
+
         labels = {
-            'dob': 'Date of birth:',
-            'good_with_cats': 'Are they good with cats?',
-            'good_with_kids': 'Are they good with kids?',
+            'good_with_cats': 'Is your dog good with cats?',
+            'good_with_kids': 'Is your dog good with kids?',
+            'good_with_dogs': 'Is your dog good with other dogs?:',
             'bio': 'Tell us about your pup!:',
             'weight': "Weight (in pounds):",
         }
 
-        fields = ['name', 'dob', 'weight', 'good_with_cats', 'good_with_kids']
-
-    user = models.ForeignKey(User, models.CASCADE)
-    name = models.CharField(max_length=200)
-    dob = models.DateField()
-    weight = models.DecimalField(decimal_places=2, max_digits=7)
-    good_with_cats = models.BooleanField(default=None)
-    good_with_kids = models.BooleanField(default=None)
-    bio = models.TextField(max_length=100000)
+        fields = ['name', 'dob', 'weight', 'good_with_cats', 'good_with_kids', 'good_with_dogs', 'bio', 'dob']

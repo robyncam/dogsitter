@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .forms import RegisterForm, ProfileForm, LoginForm
+from .forms import RegisterForm, ProfileForm, LoginForm, DogForm
 from django.contrib.auth.decorators import login_required
 from . import models
 
@@ -84,3 +84,18 @@ def edit_profile(request):
 def profilepage(request):
     context = {'profile': request.user.profile}
     return render(request, 'profilepage.html', context)
+
+
+@login_required
+def add_dog(request):
+    form = DogForm()
+    if request.method == "POST":
+        form = DogForm(request.POST)
+        if form.is_valid():
+            dog_profile = form.save(commit=False)
+            dog_profile.user = request.user
+            dog_profile.save()
+            return redirect('profile_page')
+
+    context ={'form':form}
+    return render(request, "add_dog.html", context)
