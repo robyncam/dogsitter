@@ -50,7 +50,6 @@
 
     </style>
 </head>
-
 <body>
     <header class = "main-header">
         <div class ="nav-container">
@@ -61,7 +60,7 @@
                 {% else %}
                     <h4> Welcome!</h4>
                 {% endif %}
-                <button class ="top-buttons" ><a href= "{% url 'home' %}">Home</a></button>
+                <button class="top-buttons"><a href= "{% url 'home' %}">Home</a></button>
                 {% if user.is_authenticated %}
                     <button class="top-buttons"><a href= "{% url 'logout' %}">Logout</a></button>
                 {% else %}
