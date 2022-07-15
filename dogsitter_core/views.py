@@ -103,12 +103,13 @@ def add_dog(request):
             dog_profile.save()
             return redirect('profile_page')
 
-    context ={'form':form}
+    context = {'form':form}
     return render(request, "add_dog.html", context)
 
 
 def dog_profile(request, dog_pk):
     dog_profile = get_object_or_404(models.Dog, pk=dog_pk)
+
     context = {'dog': dog_profile}
 
     return render(request, 'dog_profile.html', context)

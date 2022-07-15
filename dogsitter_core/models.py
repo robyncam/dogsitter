@@ -24,6 +24,7 @@ class Dog(models.Model):
     good_with_dogs = models.BooleanField(default=False)
     bio = models.TextField(max_length=100000)
     dob = models.DateField()
+    breed = models.CharField(max_length=100, default='Bulldog')
 
     def __str__(self):
         return str(self.name)

@@ -42,19 +42,26 @@ class LoginForm(forms.ModelForm):
 
 
 class DogForm(forms.ModelForm):
+    BOOL_CHOICES = [(True, 'Yes'), (False, 'No')]
+    BREEDS = [('boxer', 'Boxer'), ('golden','Golden'), ('bulldog','Bulldog')]
     current_year = int(date.today().year)
     YEAR_CHOICES = list(range(current_year, (current_year - 25), -1))
     dob = forms.DateField(label="Date of Birth: ", widget=forms.SelectDateWidget(years=YEAR_CHOICES))
+    breed = forms.CharField(widget=forms.Select(choices=BREEDS))
+    good_with_cats = forms .CharField(label='Is your dog good with cats?',
+                                      widget=forms.RadioSelect(choices=BOOL_CHOICES))
+    good_with_kids = forms.CharField(label='Is your dog good with kids?',
+                                     widget=forms.RadioSelect(choices=BOOL_CHOICES))
+    good_with_dogs = forms.CharField(label='Is your dog good with other dogs?',
+                                     widget=forms.RadioSelect(choices=BOOL_CHOICES))
 
     class Meta:
         model = Dog
-
         labels = {
-            'good_with_cats': 'Is your dog good with cats?',
-            'good_with_kids': 'Is your dog good with kids?',
-            'good_with_dogs': 'Is your dog good with other dogs?:',
             'bio': 'Tell us about your pup!:',
             'weight': "Weight (in pounds):",
+            'breed': "What breed is your dog?:",
         }
 
-        fields = ['name', 'dob', 'weight', 'good_with_cats', 'good_with_kids', 'good_with_dogs', 'bio', 'dob']
+        fields = ['name', 'dob', 'weight', 'good_with_cats',
+                  'good_with_kids', 'good_with_dogs', 'bio', 'dob', 'breed']
