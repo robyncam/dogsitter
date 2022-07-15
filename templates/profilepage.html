@@ -23,7 +23,7 @@
     {% if user.dog_set %}
         <p>My Dogs: </p>
         {% for dog in dogs %}
-            <ul><a href="{% url 'home' %}"> {{dog}} </a> </ul>
+            <ul><a href="{% url 'dog_profile' dog.pk %}"> {{dog}} </a> </ul>
         {% endfor %}
     {% else %}
         <p>I do not have a dog</p>
