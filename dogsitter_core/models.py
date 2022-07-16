@@ -40,3 +40,7 @@ class Dog(models.Model):
             return f'{int(months_lived//12)} years and {int(months_lived%12)} months'
         else:
             return f'{int(months_lived)//12} years'
+
+    def birthday(self):
+        if self.dob == timezone.now().date():
+            return True
