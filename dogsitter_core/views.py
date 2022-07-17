@@ -52,7 +52,7 @@ def logout(request):
 def profile(request):
     form = ProfileForm()
     if request.method == "POST":
-        form = ProfileForm(request.POST)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             new_profile = form.save(commit=False)
             new_profile.user = request.user
@@ -70,7 +70,7 @@ def edit_profile(request):
     profile = models.Profile.objects.get(user_id=current_user.id)
     form = ProfileForm(instance=profile)
     if request.method == "POST":
-        form = ProfileForm(request.POST, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.save()

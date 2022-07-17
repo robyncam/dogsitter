@@ -22,7 +22,7 @@ class RegisterForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['location', 'cost', 'is_dog_sitter', 'bio']
+        fields = ['location', 'cost', 'is_dog_sitter', 'bio', 'image']
 
 
 class LoginForm(forms.ModelForm):
