@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 from . import models
 
 
-
-
 def home(request):
     return render(request, 'home.html')
 
@@ -65,7 +63,6 @@ def profile(request):
     return render(request, 'profile.html', context)
 
 
-#
 @login_required
 def edit_profile(request):
     current_user = request.user
@@ -103,13 +100,11 @@ def add_dog(request):
             dog_profile.save()
             return redirect('profile_page')
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, "add_dog.html", context)
 
 
 def dog_profile(request, dog_pk):
     dog_profile = get_object_or_404(models.Dog, pk=dog_pk)
-
     context = {'dog': dog_profile}
-
     return render(request, 'dog_profile.html', context)

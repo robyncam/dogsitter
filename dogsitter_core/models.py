@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
     location = models.CharField(max_length=1000)
@@ -32,7 +31,7 @@ class Dog(models.Model):
     def age(self):
         time_lived = timezone.now().date() - self.dob
         months_lived = time_lived.days//30.5
-        if months_lived <1:
+        if months_lived < 1:
             return f'{time_lived.days} days'
         if months_lived < 12:
             return f'{int(months_lived)} months'

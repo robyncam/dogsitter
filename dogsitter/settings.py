@@ -132,4 +132,3 @@ USE_L10N = False
 DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-
