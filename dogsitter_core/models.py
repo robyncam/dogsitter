@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from datetime import date
 
 
 class Profile(models.Model):
@@ -15,6 +16,16 @@ class Profile(models.Model):
 
 
 class Dog(models.Model):
+    BOXER = 'boxer'
+    GOLDEN = 'golden'
+    BULLDOG = 'bulldog'
+
+    BREED_CHOICES = [
+        (BOXER, 'Boxer'),
+        (GOLDEN, 'Golden'),
+        (BULLDOG, 'Bulldog'),
+    ]
+
     user = models.ForeignKey(User, models.CASCADE)
     name = models.CharField(max_length=200)
     weight = models.IntegerField()
@@ -23,7 +34,7 @@ class Dog(models.Model):
     good_with_dogs = models.BooleanField(default=False)
     bio = models.TextField(max_length=100000)
     dob = models.DateField()
-    breed = models.CharField(max_length=100, default='Bulldog')
+    breed = models.CharField(max_length=100, choices=BREED_CHOICES, default="")
 
     def __str__(self):
         return str(self.name)
@@ -40,6 +51,11 @@ class Dog(models.Model):
         else:
             return f'{int(months_lived)//12} years'
 
-    def birthday(self):
-        if self.dob == timezone.now().date():
-            return True
+    def is_birthday_today(self):
+        date_today = date.today()
+        day = date_today.day
+        month = date_today.month
+        birth_day = self.dob.day
+        birth_month = self.dob.month
+        if day == birth_day and month == birth_month:
+            return day == birth_day and month == birth_month

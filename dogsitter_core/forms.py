@@ -45,10 +45,9 @@ class DogForm(forms.ModelForm):
     BOOL_CHOICES = [(True, 'Yes'), (False, 'No')]
     BREEDS = [('boxer', 'Boxer'), ('golden', 'Golden'), ('bulldog', 'Bulldog')]
     current_year = int(date.today().year)
-    YEAR_CHOICES = list(range(current_year, (current_year - 25), -1))
+    YEAR_CHOICES = range(current_year, (current_year - 25), -1)
     dob = forms.DateField(label="Date of Birth: ",
                           widget=forms.SelectDateWidget(years=YEAR_CHOICES))
-    breed = forms.CharField(widget=forms.Select(choices=BREEDS))
     good_with_cats = forms .CharField(label='Is your dog good with cats?',
                                       widget=forms.RadioSelect(choices=BOOL_CHOICES))
     good_with_kids = forms.CharField(label='Is your dog good with kids?',

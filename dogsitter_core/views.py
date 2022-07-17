@@ -81,11 +81,7 @@ def edit_profile(request):
 
 @login_required
 def profilepage(request):
-    current_user = request.user
-    if current_user.dog_set:
-        dogs = current_user.dog_set.all()
-
-    context = {'profile': request.user.profile, 'dogs': dogs}
+    context = {'profile': request.user.profile}
     return render(request, 'profilepage.html', context)
 
 
