@@ -36,7 +36,7 @@ def login(request):
             auth.login(request, user)
             return redirect('home')
         else:
-            messages.info(request, "Credientials do not match, try again")
+            messages.info(request, "Credentials do not match, try again")
             return redirect('login')
 
     context = {"form": form}
