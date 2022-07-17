@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'dogsitter_core.middleware.ProfileMiddleware',
 ]
 
 ROOT_URLCONF = 'dogsitter.urls'
@@ -129,3 +130,6 @@ AUTH_USER_MODEL = "auth.User"
 USE_L10N = False
 
 DATE_INPUT_FORMATS = ['%d/%m/%Y']
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
