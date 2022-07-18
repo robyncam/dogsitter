@@ -46,7 +46,7 @@
 
         }
 
-        #nav_profile_pic {
+        .nav_profile_pic {
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -86,7 +86,7 @@
                     <button class="top-buttons"><a href = "{% url 'profile' %}"> Create Profile Page </a></button>
                 {% endif %}
                 {% if user.is_authenticated and user.profile.image %}
-                    <img id="nav_profile_pic" src="{{ user.profile.image.url}}">
+                    <img class="nav_profile_pic" src="{{ user.profile.image.url}}">
                 {% endif %}
             </div>
         </div>
