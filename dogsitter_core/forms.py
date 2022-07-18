@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, MultipleImages
 
 
 class RegisterForm(forms.ModelForm):
@@ -31,3 +31,10 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username']
+
+
+class MultipleImagesForm(forms.ModelForm):
+
+    class Meta:
+        model = MultipleImages
+        fields =['images']

@@ -12,3 +12,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+
+class MultipleImages(models.Model):
+    user = models.ForeignKey(User, models.CASCADE)
+    images = models.FileField(upload_to='files')

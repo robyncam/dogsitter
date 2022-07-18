@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .forms import RegisterForm, ProfileForm, LoginForm
+from .forms import RegisterForm, ProfileForm, LoginForm, MultipleImagesForm
 from django.contrib.auth.decorators import login_required
 from . import models
 
@@ -84,3 +84,17 @@ def edit_profile(request):
 def profilepage(request):
     context = {'profile': request.user.profile}
     return render(request, 'profilepage.html', context)
+
+@login_required
+def add_images(request):
+    form = MultipleImagesForm()
+    if request.method == "POST":
+        form = MultipleImagesForm(request.FILES)
+        images = request.FILES.getlist('images')
+        if form.is_valid():
+            images = form.save(commit=False)
+            images.save
+            return redirect('profile_page')
+
+    context = {'form': form}
+    return render(request, 'add_images.html', context)

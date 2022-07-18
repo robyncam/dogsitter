@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Add Images
+{% endblock %}
+
+{% block content %}
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <form method = "POST" >
+        <input type="file" name="images" multiple>
+        {% csrf_token %}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
