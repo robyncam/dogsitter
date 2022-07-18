@@ -57,5 +57,4 @@ class Dog(models.Model):
         month = date_today.month
         birth_day = self.dob.day
         birth_month = self.dob.month
-        if day == birth_day and month == birth_month:
-            return day == birth_day and month == birth_month
+        return day == birth_day and month == birth_month
