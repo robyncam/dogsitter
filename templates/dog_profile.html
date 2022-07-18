@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Dog Profile
+    Meet {{ dog.name }}!
 {% endblock %}
 
 {% block content %}
 
-<h4>hi my name is {{dog.name}}</h4>
+<h4>Hi my name is {{dog.name}}</h4>
 <h4> Weight: {{dog.weight}} pounds</h4>
 
 {% if dog.good_with_cats %}

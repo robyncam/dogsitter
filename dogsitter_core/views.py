@@ -91,9 +91,9 @@ def add_dog(request):
     if request.method == "POST":
         form = DogForm(request.POST)
         if form.is_valid():
-            dog_profile = form.save(commit=False)
-            dog_profile.user = request.user
-            dog_profile.save()
+            dog = form.save(commit=False)
+            dog.user = request.user
+            dog.save()
             return redirect('profile_page')
 
     context = {'form': form}
@@ -101,6 +101,6 @@ def add_dog(request):
 
 
 def dog_profile(request, dog_pk):
-    dog_profile = get_object_or_404(models.Dog, pk=dog_pk)
-    context = {'dog': dog_profile}
+    dog = get_object_or_404(models.Dog, pk=dog_pk)
+    context = {'dog': dog}
     return render(request, 'dog_profile.html', context)
