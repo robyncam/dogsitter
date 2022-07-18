@@ -22,9 +22,35 @@
     <h3> About </h3>
     <h4> I am located in: {{profile.location}} </h4>
     <h4>I charge: {{profile.cost}} per day</h4>
+    {% if user.profile.is_dog_sitter %}
+        <h4> I am a dog sitter!</h4>
+    {% endif %}
+    <h4>I am looking for a dog sitter</h4>
     <h4> A little about me: </h4>
     <p>{{user.profile.bio}}</p>
 
-    <p> Want to update your profile?</p>
-    <a href = "{% url 'edit_profile' %}"> here </a>
+
+    {% if user.dog_set.exists %}
+        <p>My Dogs: </p>
+        {% for dog in user.dog_set.all %}
+            <ul><a href="{% url 'dog_profile' dog.pk %}"> {{dog}} </a> </ul>
+        {% endfor %}
+    {% else %}
+        <p>I do not have a dog</p>
+    {% endif %}
+
+{%for dog in user.dog_set.all %}
+    {% if dog.is_birthday_today %}
+    <h3> Happy Birthday {{dog}} </h3>
+{% endif %}
+{% endfor %}
+
+
+
+    <h2><a href="{% url 'add_dog' %}"> Create a Profile page for your dog!</a> </h2>
+
+    <p>Update your profile<a href = "{% url 'edit_profile' %}"> here </a></p>
+
 {% endblock %}
+
+
