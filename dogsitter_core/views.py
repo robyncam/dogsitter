@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
-<<<<<<< HEAD
-from .forms import RegisterForm, ProfileForm, LoginForm, MultipleImagesForm
-=======
-from .forms import RegisterForm, ProfileForm, LoginForm, DogForm
->>>>>>> master
+from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, MultipleImagesForm
 from django.contrib.auth.decorators import login_required
 from . import models
 

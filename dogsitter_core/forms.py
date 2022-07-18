@@ -1,11 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
-<<<<<<< HEAD
-from .models import Profile, MultipleImages
-=======
-from .models import Profile, Dog
+from .models import Profile, Dog, MultipleImages
 from datetime import date
->>>>>>> master
+
 
 
 class RegisterForm(forms.ModelForm):
