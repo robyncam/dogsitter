@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -132,3 +133,6 @@ USE_L10N = False
 DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
