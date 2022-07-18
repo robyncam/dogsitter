@@ -31,7 +31,7 @@ class ProfileForm(forms.ModelForm):
             'bio': 'Tell us a bit about yourself',
         }
 
-        fields = ['location', 'cost', 'is_dog_sitter', 'bio']
+        fields = ['location', 'cost', 'is_dog_sitter', 'bio', 'image']
 
 
 class LoginForm(forms.ModelForm):
