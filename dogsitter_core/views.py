@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .forms import RegisterForm, ProfileForm, LoginForm
+from .forms import RegisterForm, ProfileForm, LoginForm, DogForm
 from django.contrib.auth.decorators import login_required
 from . import models
 
@@ -63,7 +63,6 @@ def profile(request):
     return render(request, 'profile.html', context)
 
 
-#
 @login_required
 def edit_profile(request):
     current_user = request.user
@@ -84,3 +83,24 @@ def edit_profile(request):
 def profilepage(request):
     context = {'profile': request.user.profile}
     return render(request, 'profilepage.html', context)
+
+
+@login_required
+def add_dog(request):
+    form = DogForm()
+    if request.method == "POST":
+        form = DogForm(request.POST)
+        if form.is_valid():
+            dog = form.save(commit=False)
+            dog.user = request.user
+            dog.save()
+            return redirect('profile_page')
+
+    context = {'form': form}
+    return render(request, "add_dog.html", context)
+
+
+def dog_profile(request, dog_pk):
+    dog = get_object_or_404(models.Dog, pk=dog_pk)
+    context = {'dog': dog}
+    return render(request, 'dog_profile.html', context)
