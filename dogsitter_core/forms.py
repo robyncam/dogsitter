@@ -43,7 +43,6 @@ class LoginForm(forms.ModelForm):
 
 class DogForm(forms.ModelForm):
     BOOL_CHOICES = [(True, 'Yes'), (False, 'No')]
-    BREEDS = [('boxer', 'Boxer'), ('golden', 'Golden'), ('bulldog', 'Bulldog')]
     current_year = int(date.today().year)
     YEAR_CHOICES = range(current_year, (current_year - 25), -1)
     dob = forms.DateField(label="Date of Birth: ",
