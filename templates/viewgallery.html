@@ -2,11 +2,11 @@
 
 {% block content %}
 {% for galleryimage in user.galleryimage_set.all %}
-                <div class="col-lg-4 col-md-4 col-12" >
-                    <div class="text-center mt-2">
-                        <img src="{{ galleryimage.image.url }}" height="70%" width="70%" class="img-thumbnail" alt="...">
-                    </div>
-                </div>
+    <div class="col-lg-4 col-md-4 col-12" >
+        <div class="text-center mt-2">
+            <img src="{{ galleryimage.image.url }}" height="70%" width="70%" class="img-thumbnail" alt="...">
+        </div>
+    </div>
 {% endfor %}
 
 {% endblock %}

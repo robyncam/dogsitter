@@ -4,7 +4,6 @@ from .models import Profile, Dog, GalleryImage
 from datetime import date
 
 
-
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(max_length=100, widget=forms.PasswordInput)
     confirm_password = forms.CharField(max_length=100, widget=forms.PasswordInput)
