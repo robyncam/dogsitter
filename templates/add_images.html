@@ -6,10 +6,13 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{user.first_name}} {{user.last_name}}</h1>
-    <form method = "POST" >
-        <input type="file" name="images" multiple>
+ <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <form method = "POST" enctype="multipart/form-data" >
         {% csrf_token %}
-        <button type="submit">Submit</button>
+        {{form}}
+        <input type="submit">
     </form>
+{% for img in images %}
+<img src="'{{img.images.url}}">
+{% endfor %}
 {% endblock %}

@@ -16,11 +16,6 @@ class Profile(models.Model):
         return str(self.user)
 
 
-
-class MultipleImages(models.Model):
-    user = models.ForeignKey(User, models.CASCADE)
-    images = models.FileField(upload_to='files')
-
 class Dog(models.Model):
     BOXER = 'boxer'
     GOLDEN = 'golden'
@@ -65,3 +60,7 @@ class Dog(models.Model):
         birth_month = self.dob.month
         return day == birth_day and month == birth_month
 
+
+class MultipleImages(models.Model):
+    user = models.ForeignKey(User, models.CASCADE)
+    image = models.ImageField(default='', upload_to='profile_pics')

@@ -42,13 +42,6 @@ class LoginForm(forms.ModelForm):
         fields = ['username']
 
 
-
-class MultipleImagesForm(forms.ModelForm):
-
-    class Meta:
-        model = MultipleImages
-        fields =['images']
-
 class DogForm(forms.ModelForm):
     BOOL_CHOICES = [(True, 'Yes'), (False, 'No')]
     current_year = int(date.today().year)
@@ -73,3 +66,13 @@ class DogForm(forms.ModelForm):
         fields = ['name', 'dob', 'weight', 'good_with_cats',
                   'good_with_kids', 'good_with_dogs', 'bio', 'dob', 'breed']
 
+
+class MultipleImagesForm(forms.ModelForm):
+    image = forms.ImageField(
+            label="Add some more pictures",
+            widget=forms.ClearableFileInput(attrs={'multiple': True}),
+            )
+
+    class Meta:
+        model = MultipleImages
+        fields = ['image']

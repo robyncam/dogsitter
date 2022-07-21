@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for multipleimage in user.multipleimages_set.all %}
+                <div class="col-lg-4 col-md-4 col-12" >
+                    <div class="text-center mt-2">
+                        <img src="{{ multipleimage.image.url }}" height="70%" width="70%" class="img-thumbnail" alt="...">
+                    </div>
+                </div>
+{% endfor %}
+
+{% endblock %}

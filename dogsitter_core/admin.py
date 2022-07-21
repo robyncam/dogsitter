@@ -5,3 +5,5 @@ from .models import Profile, Dog
 
 admin.site.register(Profile)
 admin.site.register(Dog)
+
+

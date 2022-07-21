@@ -14,6 +14,7 @@ urlpatterns = [
     path('add_images', views.add_images, name='add_images'),
     path('add_dog', views.add_dog, name='add_dog'),
     path('dog_profile/<int:dog_pk>', views.dog_profile, name='dog_profile'),
+    path('viewgallery', views.viewgallery, name='viewgallery'),
 
 ]
 

@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, MultipleImagesForm
 from django.contrib.auth.decorators import login_required
 from . import models
+from .models import MultipleImages
 
 
 def home(request):
@@ -86,21 +87,6 @@ def profilepage(request):
 
 
 @login_required
-def add_images(request):
-    form = MultipleImagesForm()
-    if request.method == "POST":
-        form = MultipleImagesForm(request.FILES)
-        images = request.FILES.getlist('images')
-        if form.is_valid():
-            images = form.save(commit=False)
-            images.save
-            return redirect('profile_page')
-
-    context = {'form': form}
-    return render(request, 'add_images.html', context)
-
-
-@login_required
 def add_dog(request):
     form = DogForm()
     if request.method == "POST":
@@ -120,3 +106,21 @@ def dog_profile(request, dog_pk):
     context = {'dog': dog}
     return render(request, 'dog_profile.html', context)
 
+
+@login_required
+def add_images(request):
+    form = MultipleImagesForm()
+    if request.method == "POST":
+        form = MultipleImagesForm(request.FILES)
+        images = request.FILES.getlist('image')
+        for image in images:
+            MultipleImages.objects.create(image=image, user=request.user)
+            image = MultipleImages.objects.all()
+        return redirect('profile_page')
+
+    context = {'form': form}
+    return render(request, 'add_images.html', context)
+
+
+def viewgallery(request):
+    return render(request, 'viewgallery.html')
