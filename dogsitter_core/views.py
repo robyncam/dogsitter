@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, MultipleImagesForm
+from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
 from django.contrib.auth.decorators import login_required
 from . import models
-from .models import MultipleImages
+from .models import GalleryImage
 
 
 def home(request):
@@ -109,13 +109,13 @@ def dog_profile(request, dog_pk):
 
 @login_required
 def add_images(request):
-    form = MultipleImagesForm()
+    form = GalleryImageForm()
     if request.method == "POST":
-        form = MultipleImagesForm(request.FILES)
+        form = GalleryImageForm(request.FILES)
         images = request.FILES.getlist('image')
         for image in images:
-            MultipleImages.objects.create(image=image, user=request.user)
-            image = MultipleImages.objects.all()
+            GalleryImage.objects.create(image=image, user=request.user)
+            image = GalleryImage.objects.all()
         return redirect('profile_page')
 
     context = {'form': form}

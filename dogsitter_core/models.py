@@ -61,6 +61,6 @@ class Dog(models.Model):
         return day == birth_day and month == birth_month
 
 
-class MultipleImages(models.Model):
+class GalleryImage(models.Model):
     user = models.ForeignKey(User, models.CASCADE)
     image = models.ImageField(default='', upload_to='profile_pics')
