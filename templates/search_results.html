@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Search
+{% endblock %}
+
+{% block extra_css %}
+
+h1 {
+ text-align: center;
+}
+
+.profile_pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.results {
+    display: flex;
+    width: 800px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px auto 50px auto;
+    background: #cbf3f0;
+    padding: 60px 40px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#info {
+    margin: auto auto;
+}
+
+{% endblock %}
+
+{%block content%}
+
+{% if searched %}
+
+<h1>Search Results for {{searched}} </h1>
+{% for profile in profiles %}
+  <div class = "results">
+    <img class="profile_pic" src="{{ profile.image.url }}" alt="Profile Picture">
+  <div id="info">
+    <h1>{{profile}}</h1>
+    <p>ABOUT: {{profile.bio}}</p>
+    <p>COST: {{profile.cost}}</p>
+    <p> LOCATION: {{profile.location}}</p>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+  <h1> Whoops! It appears you haven't searched for anything yet... </h1>
+{% endif %}
+
+{% endblock %}
+

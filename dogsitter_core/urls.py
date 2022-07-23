@@ -13,6 +13,7 @@ urlpatterns = [
     path('edit_profile', views.edit_profile, name='edit_profile'),
     path('add_dog', views.add_dog, name='add_dog'),
     path('dog_profile/<int:dog_pk>', views.dog_profile, name='dog_profile'),
+    path('search_results', views.search_results, name='search_results'),
 ]
 
 if settings.DEBUG:

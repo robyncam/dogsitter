@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import RegisterForm, ProfileForm, LoginForm, DogForm
 from django.contrib.auth.decorators import login_required
 from . import models
+from .models import Profile
 
 
 def home(request):
@@ -104,3 +105,14 @@ def dog_profile(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
     context = {'dog': dog}
     return render(request, 'dog_profile.html', context)
+
+
+def search_results(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        profiles = Profile.objects.filter(location__contains=searched, is_dog_sitter=True)
+        context = {'searched': searched, 'profiles':profiles}
+        return render(request, 'search_results.html', context)
+    else:
+        return render(request, 'search_results.html')
+
