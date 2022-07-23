@@ -18,17 +18,27 @@
     color: white;
     margin-top: 8px;
     font-style: bolder;
-
 }
 
-.search-bar {
-    color: black;
+#title {
+    font-size: 30px;
+}
 
+#tagline {
+    font-size: 20px;
 }
 
 .search-button {
-    background: black;
+    background: #43aa8b;
+    border: 2px solid black;
     border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 20px;
+
+}
+
+a {
+    color: black;
 }
 
 {% endblock %}
@@ -37,11 +47,14 @@
 
 <div class="hero-image">
     <div class="hero-text">
-        <h1> Find DogSitters in your area now!</h1>
-        <p> Search your neighbourhood</p>
-        <input class="search-bar" type="search">
-        <button class="search-button"> Search </button>
+        <h1 id="title"> Daily or weekly Dogsitters in your area</h1>
+        <p id="tagline"> Someone to take care of your pets as if they were their own</p>
+        <a href = "{% url 'profile_page' %}">
+            <button class="search-button"> Search Now > </button>
+        </a>
     </div>
 </div>
+
+
 
 {% endblock %}
