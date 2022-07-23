@@ -1,1 +1,47 @@
 {% extends 'base.html' %}
+{% block extra_css %}
+
+.hero-image {
+    background-image: url("media/dogbed.jpg");
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 10px 2px 5px 2px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.hero-text {
+    text-align: center;
+    color: white;
+    margin-top: 8px;
+    font-style: bolder;
+
+}
+
+.search-bar {
+    color: black;
+
+}
+
+.search-button {
+    background: black;
+    border-radius: 10px;
+}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="hero-image">
+    <div class="hero-text">
+        <h1> Find DogSitters in your area now!</h1>
+        <p> Search your neighbourhood</p>
+        <input class="search-bar" type="search">
+        <button class="search-button"> Search </button>
+    </div>
+</div>
+
+{% endblock %}
