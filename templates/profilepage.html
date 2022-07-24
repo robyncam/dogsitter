@@ -16,7 +16,7 @@
 }
 
 .gallery_images {
-width: 250px;
+    width: 250px;
     height: 250px;
     overflow: hidden;
     object-fit: cover;
@@ -54,14 +54,12 @@ width: 250px;
 {% endif %}
 {% endfor %}
 
-<h2><a href="{% url 'add_dog' %}"> Create a Profile page for your dog!</a> </h2>
-<p>Update your profile<a href = "{% url 'edit_profile' %}"> here </a></p>
-<p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
-<p> View more pictures: </p>
-<a href="{% url 'viewgallery' %}">
-    <img alt="View Gallery" src= "{{ user.galleryimage_set.first.image.url }}">
-</a>
+    <h2><a href="{% url 'add_dog' %}"> Create a Profile page for your dog!</a> </h2>
+    <p>Update your profile<a href = "{% url 'edit_profile' %}"> here </a></p>
+    <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
+    <p> View more pictures: </p>
+    <a href="{% url 'view_gallery' %}">
+        <img alt="View Gallery" src= "{{ user.galleryimage_set.first.image.url }}">
+    </a>
 
 {% endblock %}
-
-

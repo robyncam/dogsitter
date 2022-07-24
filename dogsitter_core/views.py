@@ -4,7 +4,6 @@ from django.contrib import messages
 from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
 from django.contrib.auth.decorators import login_required
 from . import models
-from .models import GalleryImage
 
 
 def home(request):
@@ -111,16 +110,16 @@ def dog_profile(request, dog_pk):
 def add_images(request):
     form = GalleryImageForm()
     if request.method == "POST":
-        form = GalleryImageForm(request.FILES)
-        images = request.FILES.getlist('image')
-        for image in images:
-            GalleryImage.objects.create(image=image, user=request.user)
-            image = GalleryImage.objects.all()
-        return redirect('profile_page')
+        form = GalleryImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            images = request.FILES.getlist('image')
+            for image in images:
+                models.GalleryImage.objects.create(image=image, user=request.user)
+            return redirect('profile_page')
 
     context = {'form': form}
     return render(request, 'add_images.html', context)
 
 
-def viewgallery(request):
-    return render(request, 'viewgallery.html')
+def view_gallery(request):
+    return render(request, 'view_gallery.html')

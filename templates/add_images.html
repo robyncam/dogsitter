@@ -6,13 +6,9 @@
 {% endblock %}
 
 {% block content %}
- <h1>{{user.first_name}} {{user.last_name}}</h1>
     <form method = "POST" enctype="multipart/form-data" >
         {% csrf_token %}
-        {{form}}
+        {{form|crispy}}
         <input type="submit">
     </form>
-{% for img in images %}
-<img src="'{{img.images.url}}">
-{% endfor %}
 {% endblock %}
