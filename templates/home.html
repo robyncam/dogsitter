@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block extra_css %}
+{% load static %}
 
 .hero-image {
-    background-image: url("media/dogbed.jpg");
-    height: 500px;
+    background-image: url("{% static 'dogsitter/dogbed.jpg' %}");
+    height: 100vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin: 10px 2px 5px 2px;
+    margin: 0px;
     display: flex;
     flex-direction: column;
 
@@ -16,12 +17,12 @@
 .hero-text {
     text-align: center;
     color: white;
-    margin-top: 8px;
     font-style: bolder;
 }
 
 #title {
     font-size: 30px;
+    margin-top: 40px;
 }
 
 #tagline {
