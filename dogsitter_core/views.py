@@ -114,19 +114,16 @@ def search_results(request):
         searched_location = request.POST['searched_location']
         searched_name = request.POST['searched_name']
         searched_cost = request.POST['searched_cost']
-        searched_locations = User.objects.filter(profile__location__contains=searched_location)
-        searched_names = User.objects.filter(first_name__contains=searched_name)
-        searched_costs = User.objects.filter(profile__cost__range=(0, searched_cost))
-
-        context = {'searched_names': searched_names,
-                   'searched_name': searched_name,
-                   'searched_locations': searched_locations,
-                   'searched_location': searched_location,
-                   'searched_cost': searched_cost,
-                   'searched_costs': searched_costs,
-        }
-
+        if searched_cost:
+            available_sitters = User.objects.filter(profile__location__contains=searched_location,
+                                                    first_name__contains=searched_name,
+                                                    profile__cost__lte=searched_cost)
+        else:
+            available_sitters = User.objects.filter(profile__location__contains=searched_location,
+                                                    first_name__contains=searched_name)
+        context = {'available_sitters':  available_sitters}
         return render(request, 'search_results.html', context)
-    else:
-        return render(request, 'search_results.html')
 
+@login_required
+def search_engine(request):
+    return render(request, 'search_engine.html')

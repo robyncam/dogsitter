@@ -35,59 +35,40 @@ h1 {
     margin: auto auto;
 }
 
+.footer {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 40px;
+}
+
 {% endblock %}
 
 {%block content%}
 
-{% if searched_name %}
-<h1>Search Results for {{searched_name}}  </h1>
+{% if available_sitters %}
 
-{% for user in searched_names %}
+
+<h1> Available DogSitters: </h1>
+
+{% for user in available_sitters %}
   <div class = "results">
     <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
   <div id="info">
-    <h1>   {{user.first_name}} {{user.last_name}}</h1>
-    <p> LOCATION: {{user.profile.location}}</p>
-    <p>COST: {{user.profile.cost}}</p>
-    <p>ABOUT: {{user.profile.bio}}</p>
+    <h1>{{user.first_name.capitalize}} {{user.last_name.capitalize}}</h1>
+    <p> Location: {{user.profile.location}}</p>
+    <p>Cost: $ {{user.profile.cost}} per day</p>
+    <p>About Me: {{user.profile.bio}}</p>
   </div>
 </div>
-
 {% endfor %}
+
+{% else %}
+<h1> It appears nothing matched your search </h1>
 {% endif %}
 
-{% if searched_location %}
-<h1>Search Results for {{searched_location}}  </h1>
-
-{% for user in searched_locations %}
-  <div class = "results">
-    <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
-  <div id="info">
-    <h1>   {{user.first_name}} {{user.last_name}}</h1>
-    <p> LOCATION: {{user.profile.location}}</p>
-    <p>COST: {{user.profile.cost}}</p>
-    <p>ABOUT: {{user.profile.bio}}</p>
-  </div>
+<div class="footer">
+    <a href="{% url 'search_engine' %}"> <button class="btn btn-outline-primary"> Back to Search </button></a>
 </div>
 
-{% endfor %}
-{% endif %}
-
-{% if searched_cost %}
-<h1>Search Results for {{searched_cost}}  </h1>
-
-{% for user in searched_costs %}
-  <div class = "results">
-    <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
-  <div id="info">
-    <h1>   {{user.first_name}} {{user.last_name}}</h1>
-    <p> LOCATION: {{user.profile.location}}</p>
-    <p>COST: {{user.profile.cost}}</p>
-    <p>ABOUT: {{user.profile.bio}}</p>
-  </div>
-</div>
-
-{% endfor %}
-{% endif %}
 
 {% endblock %}
