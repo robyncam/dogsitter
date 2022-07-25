@@ -7,6 +7,7 @@
 {% block extra_css %}
 
 .profile_pic {
+    display: flex;
     width: 250px;
     height: 250px;
     border-radius: 50%;
@@ -14,9 +15,18 @@
     object-fit: cover;
 }
 
+.gallery_image {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    object-fit: cover;
+
+}
+
 {% endblock %}
 
 {%block content %}
+<div class = "profile_info">
     <h1>{{user.first_name}} {{user.last_name}}</h1>
     <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
     <h3> About </h3>
@@ -28,8 +38,6 @@
     <h4>I am looking for a dog sitter</h4>
     <h4> A little about me: </h4>
     <p>{{user.profile.bio}}</p>
-
-
     {% if user.dog_set.exists %}
         <p>My Dogs: </p>
         {% for dog in user.dog_set.all %}
@@ -38,6 +46,7 @@
     {% else %}
         <p>I do not have a dog</p>
     {% endif %}
+</div>
 
 {%for dog in user.dog_set.all %}
     {% if dog.is_birthday_today %}
@@ -45,12 +54,16 @@
 {% endif %}
 {% endfor %}
 
-
-
     <h2><a href="{% url 'add_dog' %}"> Create a Profile page for your dog!</a> </h2>
 
-    <p>Update your profile<a href="{% url 'edit_profile' %}"> here </a></p>
+    <p>Update your profile<a href = "{% url 'edit_profile' %}"> here </a></p>
+    <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
+
+    {% if user.galleryimage_set.exists %}
+        <p> View more pictures: </p>
+        <a href="{% url 'view_gallery' %}">
+            <img class="img-thumbnail gallery_image" alt="View Gallery" src= "{{ user.galleryimage_set.first.image.url }}">
+        </a>
+    {% endif %}
 
 {% endblock %}
-
-
