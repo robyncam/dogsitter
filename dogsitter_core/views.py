@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import auth
+from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from .forms import RegisterForm, ProfileForm, LoginForm, DogForm
 from django.contrib.auth.decorators import login_required
 from . import models
 from .models import Profile
+from itertools import chain
+
 
 
 def home(request):
@@ -109,9 +111,12 @@ def dog_profile(request, dog_pk):
 
 def search_results(request):
     if request.method == "POST":
-        searched = request.POST['searched']
-        profiles = Profile.objects.filter(location__contains=searched, is_dog_sitter=True)
-        context = {'searched': searched, 'profiles':profiles}
+        searched_location = request.POST['searched_location']
+        searched_name = request.POST['searched_name']
+        searched_locations = User.objects.filter(profile__location__contains=searched_location)
+        searched_names = User.objects.filter(first_name__contains=searched_name)
+
+        context = {'searched_names': searched_names, 'searched_name':searched_name, 'searched_locations':searched_locations, 'searched_location':searched_location}
         return render(request, 'search_results.html', context)
     else:
         return render(request, 'search_results.html')

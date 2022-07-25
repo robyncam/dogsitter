@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
 <form method="POST" action="{% url 'search_results' %}">
     {% csrf_token %}
-    <p> Search your area </p>
-  <input class="form-control me-2" type="search" placeholder="search" name="searched">
-  <button class="btn btn-outline-primary" type="submit"> Search </button>
+    <p> Search your perfect dogsitter now </p>
+    <p> Search by Location</p>
+    <input class="form-control me-2" type="search" placeholder="search" name="searched_location">
+     <p> Search by Name</p>
+    <input class="form-control me-2" type="search" placeholder="search" name="searched_name">
+    <button class="btn btn-outline-primary" type="submit"> Search </button>
 
 </form>
 {% endblock %}
