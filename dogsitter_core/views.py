@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .forms import RegisterForm, ProfileForm, LoginForm, DogForm
+from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
 from django.contrib.auth.decorators import login_required
 from . import models
 
@@ -104,3 +104,22 @@ def dog_profile(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
     context = {'dog': dog}
     return render(request, 'dog_profile.html', context)
+
+
+@login_required
+def add_images(request):
+    form = GalleryImageForm()
+    if request.method == "POST":
+        form = GalleryImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            images = request.FILES.getlist('image')
+            for image in images:
+                models.GalleryImage.objects.create(image=image, user=request.user)
+            return redirect('profile_page')
+
+    context = {'form': form}
+    return render(request, 'add_images.html', context)
+
+
+def view_gallery(request):
+    return render(request, 'view_gallery.html')

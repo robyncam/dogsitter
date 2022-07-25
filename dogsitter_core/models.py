@@ -59,3 +59,8 @@ class Dog(models.Model):
         birth_day = self.dob.day
         birth_month = self.dob.month
         return day == birth_day and month == birth_month
+
+
+class GalleryImage(models.Model):
+    user = models.ForeignKey(User, models.CASCADE)
+    image = models.ImageField(upload_to='profile_pics')
