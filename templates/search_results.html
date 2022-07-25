@@ -73,4 +73,21 @@ h1 {
 {% endfor %}
 {% endif %}
 
+{% if searched_cost %}
+<h1>Search Results for {{searched_cost}}  </h1>
+
+{% for user in searched_costs %}
+  <div class = "results">
+    <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
+  <div id="info">
+    <h1>   {{user.first_name}} {{user.last_name}}</h1>
+    <p> LOCATION: {{user.profile.location}}</p>
+    <p>COST: {{user.profile.cost}}</p>
+    <p>ABOUT: {{user.profile.bio}}</p>
+  </div>
+</div>
+
+{% endfor %}
+{% endif %}
+
 {% endblock %}
