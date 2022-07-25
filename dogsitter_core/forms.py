@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Dog
+from .models import Profile, Dog, GalleryImage
 from datetime import date
 
 
@@ -64,3 +64,14 @@ class DogForm(forms.ModelForm):
 
         fields = ['name', 'dob', 'weight', 'good_with_cats',
                   'good_with_kids', 'good_with_dogs', 'bio', 'dob', 'breed']
+
+
+class GalleryImageForm(forms.ModelForm):
+    image = forms.ImageField(
+            label="Add some more pictures",
+            widget=forms.ClearableFileInput(attrs={'multiple': True}),
+            )
+
+    class Meta:
+        model = GalleryImage
+        fields = ['image']
