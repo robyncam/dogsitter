@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Meet {{ dog.name }}!
+    Meet {{dog.name}}!
 {% endblock %}
 
 {% block content %}
@@ -31,6 +31,4 @@
 
 <h2> Breed: {{dog.breed}} </h2>
 
-
-<p> Back to <a href = "{% url 'profile_page' %}">profile</a> </p>
 {% endblock %}
