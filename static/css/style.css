@@ -1,4 +1,13 @@
 
+    a {
+        text-decoration: none;
+        color: black;
+     }
+
+     a:hover {
+        color: pink;
+     }
+
     .main-header {
         background: #f3722c;
         height: 100px;
@@ -33,14 +42,15 @@
     }
 
     .top-buttons {
-        background: white;
+        background-color: #f8f9fa;
         color: black;
         padding: 8px 16px;
         border-radius: 15px;
-        border: 2px solid black;
+        border: 1.5px solid black;
         height: 40px;
-        margin: 10px 10px;
+        margin: 10px;
         text-decoration: none;
+        text-align: center;
     }
 
     .message {
@@ -121,16 +131,76 @@
         margin-top: 15px;
     }
 
-    .dog-profile {
-        margin-top: 35px;
-        display: flex;
-        border: 1px solid black;
-        border-radius: 20px;
-        background-color: white;
+
+     .icon {
+        width: 35px;
+        height: 35px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        flex-direction: column;
+        border: none;
     }
 
-    .dog-name {
-        justify-content: center;
+
+    .dog-profile {
+        width: 800px;
+        margin: 35px auto 40px auto;
+        border: 1px solid black;
+        border-radius: 20px;
+        background-color: #f8f9fa;
         text-align: center;
-        margin: 35px auto 10px auto;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 20px;
+        display: flex;
+
+    }
+
+    .dog-pic{
+        margin-top: 20px;
+        display: in-line;
+        text-align: center;
+        width:400px;
+        height:400px;
+        overflow: hidden;
+        object-fit: cover;
+        border-radius: 25px;
+
+    }
+
+    .dog-info{
+        padding: 0px 20px;
+    }
+
+
+    .profile-page{
+        width: 1200px;
+        margin: 35px auto 40px auto;
+        border-radius: 20px;
+        background-color: #f8f9fa;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 20px;
+        display: flex;
+
+    }
+
+    .profile-info {
+            padding: 0px 20px;
+
+    }
+
+    .dog-section{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .user-dogs {
+        text-align: center;
+
+
     }

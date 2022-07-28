@@ -1,35 +1,45 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Meet {{dog.name}}!
 {% endblock %}
+{% block extra_css %}
+{% load static %}
 
-{% block content %}
+{% endblock %}
+{% block content_nocontainer %}
 
 <div class="dog-profile">
-    <div class="dog-name">
+    <div>
         <h4>Hi my name is {{dog.name}}!</h4>
-        <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
-        <h4> Weight: {{dog.weight}} pounds</h4>
+        <img class="dog-pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
+    </div>
+    <div class="dog-info">
+        <p> Breed: {{dog.breed}} <p>
+        <p> Age: {{dog.age}} old </p>
+        <p> Weight: {{dog.weight}} pounds</p>
+        <p> A little about me: {{dog.bio}} </p>
         {% if dog.good_with_cats %}
-            <p>I am good with cats</p>
+            <p>I am good with cats   <img class="icon" src="{% static '/dogsitter/pets-allowed.png' %}"></p>
         {% else %}
-            <p>I am not good with cats</p>
+            <p>I am not good with cats<img class="icon" src="{% static '/dogsitter/no-animals.png' %}"></p>
         {% endif %}
         {% if dog.good_with_kids %}
-            <p>I am good with kids</p>
+        <p>I am good with kids  <img class="icon" src="{% static '/dogsitter/kids.png' %}"></p>
         {% else %}
-            <p>I am not so great with kids</p>
+            <p>I am not so great with kids  <img class="icon" src="{% static '/dogsitter/no-children.png' %}"></p>
         {% endif %}
         {% if dog.good_with_dogs %}
-         <p>I am good with dogs</p>
+         <p>I am good with dogs <img class="icon" src="{% static '/dogsitter/pets-allowed.png' %}"></p>
         {% else %}
-            <p>I am not good with dogs</p>
+            <p>I am not good with dogs <img class="icon" src="{% static '/dogsitter/no-animals.png' %}"></p>
         {% endif %}
-        <h4> A little about me: {{dog.bio}} </h4>
-        <h3> Age: {{dog.age}} old </h3>
-        <h2> Breed: {{dog.breed}} </h2>
-        </div>
+        <button class="top-buttons"><a href="{% url 'profile_page' %}">Back to Profile </a> </button>
+
+
 </div>
-<p> Back to <a href = "{% url 'profile_page' %}">profile</a> </p>
+</div>
+
+
+
 {% endblock %}

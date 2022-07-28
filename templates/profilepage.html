@@ -7,27 +7,30 @@
 {%block content_nocontainer %}
 
 <div class="profile-page">
-    <div class = "profile_info">
-        <h1>{{user.first_name}} {{user.last_name}}</h1>
         <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
-        <h3> About </h3>
-        <h4> I am located in: {{profile.location}} </h4>
-        <h4>I charge: {{profile.cost}} per day</h4>
-        {% if user.profile.is_dog_sitter %}
-            <h4> I am a dog sitter!</h4>
-        {% endif %}
-        <h4>I am looking for a dog sitter</h4>
-        <h4> A little about me: </h4>
-        <p>{{user.profile.bio}}</p>
-        {% if user.dog_set.exists %}
-            <p>My Dogs: </p>
-            {% for dog in user.dog_set.all %}
-                <ul><a href="{% url 'dog_profile' dog.pk %}"> {{dog}} </a> </ul>
-            {% endfor %}
-        {% else %}
-            <p>I do not have a dog</p>
-        {% endif %}
-    </div>
+        <div class = "profile-info">
+            <h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
+            <h4> Location: {{profile.location}} </h4>
+            <h4>Rate: {{profile.cost}} per day</h4>
+            {% if user.profile.is_dog_sitter %}
+                <h4> I am a dog sitter!</h4>
+            {% endif %}
+            <h4>I am looking for a dog sitter</h4>
+            <h4> A little about me: </h4>
+            <p>{{user.profile.bio}}</p>
+        </div>
+</div>
+
+{% if user.dog_set.exists %}
+<div class="dog-section">
+    <div>
+    <h1>My Dogs: </h1>
+    {% for dog in user.dog_set.all %}
+    <div class="user-dogs">
+    <ul><a href="{% url 'dog_profile' dog.pk %}"> {{dog}} </a> </ul>
+    {% endfor %}
+    {% endif %}
+                </div>
 </div>
 
 {%for dog in user.dog_set.all %}
@@ -36,9 +39,7 @@
 {% endif %}
 {% endfor %}
 
-    <h2><a href="{% url 'add_dog' %}"> Create a Profile page for your dog!</a> </h2>
     <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
-
     {% if user.galleryimage_set.exists %}
         <p> View more pictures: </p>
         <a href="{% url 'view_gallery' %}">

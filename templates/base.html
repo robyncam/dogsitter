@@ -35,7 +35,8 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="{% url 'profile_page' %}">Profile Page</a></li>
                         {% if user.dog_set.exists %}
-                             <li><a class="dropdown-item" href='#'>Your Dogs</a></li>
+                            <li><a class="dropdown-item" href='#'>Your Dogs</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_dog' %}">Add your Dogs</a></li>
                         {% else %}
                             <li><a class="dropdown-item" href="{% url 'add_dog' %}">Add your Dogs</a></li>
                         {% endif %}
