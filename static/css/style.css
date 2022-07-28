@@ -1,0 +1,136 @@
+
+    .main-header {
+        background: #f3722c;
+        height: 100px;
+        color: white;
+        font-family: 'Cantarell', sans-serif;
+        }
+
+    .header-title {
+        font-family: 'Lobster', cursive;
+        color: white;
+
+    }
+
+    body {
+        font-family: 'Cantarell', sans-serif;
+        background-color: #eaf4f4;
+    }
+
+    .nav-container {
+        max-width: 100%;
+        padding: 20px;
+        margin: 0 auto;
+        justify-content: space-around;
+        display: flex;
+    }
+
+    .main-nav {
+        padding: 20px;
+        margin: 0 20px 0 auto;
+        justify-content: end;
+        display: flex;
+    }
+
+    .top-buttons {
+        background: white;
+        color: black;
+        padding: 8px 16px;
+        border-radius: 15px;
+        border: 2px solid black;
+        height: 40px;
+        margin: 10px 10px;
+        text-decoration: none;
+    }
+
+    .message {
+        color:red;
+    }
+
+    .nav_profile_pic {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        object-fit: cover;
+        position: relative;
+        float: left;
+        top: -5px;
+        left: -5px;
+        margin-left: 20px;
+    }
+
+    .hero-image {
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .profile_pic {
+        display: flex;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    .gallery_image {
+        width: 250px;
+        height: 250px;
+        overflow: hidden;
+        object-fit: cover;
+
+    }
+
+
+    .hero-text {
+        text-align: center;
+        color: white;
+        font-style: bolder;
+    }
+
+    #title {
+        font-size: 30px;
+        margin-top: 40px;
+    }
+
+    #tagline {
+        font-size: 20px;
+    }
+
+    .search-button {
+        background: #43aa8b;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 5px 10px;
+        font-size: 20px;
+
+    }
+
+    .a-search-button {
+        color: black;
+    }
+
+    .gallery-images {
+        margin-top: 15px;
+    }
+
+    .dog-profile {
+        margin-top: 35px;
+        display: flex;
+        border: 1px solid black;
+        border-radius: 20px;
+        background-color: white;
+    }
+
+    .dog-name {
+        justify-content: center;
+        text-align: center;
+        margin: 35px auto 10px auto;
+    }

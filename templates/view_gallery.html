@@ -1,15 +1,5 @@
 {% extends 'base.html' %}
 
-{% block extra_css%}
-
-.gallery-images {
-
-    margin-top: 15px;
-
-}
-
-{% endblock %}
-
 {% block content %}
 
 {% for galleryimage in user.galleryimage_set.all %}

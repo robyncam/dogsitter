@@ -1,48 +1,9 @@
 {% extends 'base.html' %}
-
 {% block extra_css %}
 {% load static %}
-
-.hero-image {
-    background-image: url("{% static 'dogsitter/dogbed.jpg' %}");
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0px;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.hero-text {
-    text-align: center;
-    color: white;
-    font-style: bolder;
-}
-
-#title {
-    font-size: 30px;
-    margin-top: 40px;
-}
-
-#tagline {
-    font-size: 20px;
-}
-
-.search-button {
-    background: #43aa8b;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 5px 10px;
-    font-size: 20px;
-
-}
-
-a {
-    color: black;
-}
-
+     .hero-image {
+        background-image: url("{% static '/dogsitter/dogbed.jpg' %}");
+    }
 {% endblock %}
 
 {% block content_nocontainer %}
@@ -51,10 +12,11 @@ a {
     <div class="hero-text">
         <h1 id="title"> Daily or weekly Dogsitters in your area</h1>
         <p id="tagline"> Someone to take care of your pets as if they were their own</p>
-        <a href = "{% url 'profile_page' %}">
+        <a class="a-search-button" href="{% url 'profile_page' %}">
             <button class="search-button"> Search Now > </button>
         </a>
     </div>
 </div>
+
 
 {% endblock %}
