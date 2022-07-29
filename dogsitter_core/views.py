@@ -4,9 +4,6 @@ from django.contrib import messages
 from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
 from django.contrib.auth.decorators import login_required
 from . import models
-from .models import Profile
-from itertools import chain
-
 
 
 def home(request):
@@ -103,6 +100,7 @@ def add_dog(request):
     return render(request, "add_dog.html", context)
 
 
+@login_required
 def dog_profile(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
     context = {'dog': dog}
@@ -124,6 +122,7 @@ def search_results(request):
         context = {'available_sitters':  available_sitters}
         return render(request, 'search_results.html', context)
 
+
 @login_required
 def search_engine(request):
     return render(request, 'search_engine.html')
@@ -144,6 +143,6 @@ def add_images(request):
     return render(request, 'add_images.html', context)
 
 
+@login_required
 def view_gallery(request):
     return render(request, 'view_gallery.html')
-
