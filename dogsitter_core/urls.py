@@ -16,6 +16,8 @@ urlpatterns = [
     path('dog-profile/<int:dog_pk>', views.dog_profile, name='dog_profile'),
     path('view-gallery', views.view_gallery, name='view_gallery'),
     path('edit-dog/<int:dog_pk>', views.edit_dog, name='edit_dog'),
+    path('add-dog-images/<int:dog_pk>', views.add_dog_images, name='add_dog_images'),
+    path('view-dog-gallery/<int:dog_pk>', views.view_dog_gallery, name='view_dog_gallery'),
 
 ]
 

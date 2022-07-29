@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
+from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm, DogGalleryImageForm
 from django.contrib.auth.decorators import login_required
 from . import models
 
@@ -121,10 +121,12 @@ def add_images(request):
     return render(request, 'add_images.html', context)
 
 
+@login_required()
 def view_gallery(request):
     return render(request, 'view_gallery.html')
 
 
+@login_required()
 def edit_dog(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
     form = DogForm(instance=dog)
@@ -137,3 +139,25 @@ def edit_dog(request, dog_pk):
 
     context = {'form': form}
     return render(request, 'edit_dog.html', context)
+
+
+@login_required()
+def add_dog_images(request, dog_pk):
+    dog = get_object_or_404(models.Dog, pk=dog_pk)
+    form = DogGalleryImageForm()
+    if request.method == "POST":
+        form = DogGalleryImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            images = request.FILES.getlist('image')
+            for image in images:
+                models.DogGalleryImage.objects.create(image=image, dog=dog)
+            return redirect('profile_page')
+
+    context = {'form': form}
+    return render(request, 'add_images.html', context)
+
+
+def view_dog_gallery(request, dog_pk):
+    dog = get_object_or_404(models.Dog, pk=dog_pk)
+    context = {'dog': dog}
+    return render(request, 'view_dog_gallery.html', context)

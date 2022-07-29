@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block extra_css%}
+
+.gallery-images {
+    margin-top: 15px;
+}
+
+{% endblock %}
+
+{% block content %}
+
+{% for doggalleryimage in dog.doggalleryimage_set.all %}
+    <div class="col-lg gallery-images">
+        <div class="text-center mt-2">
+            <img src="{{ doggalleryimage.image.url }}" class="img-thumbnail" alt="...">
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

@@ -75,3 +75,14 @@ class GalleryImageForm(forms.ModelForm):
     class Meta:
         model = GalleryImage
         fields = ['image']
+
+
+class DogGalleryImageForm(forms.ModelForm):
+    image = forms.ImageField(
+            label="Add some more pictures",
+            widget=forms.ClearableFileInput(attrs={'multiple': True}),
+            )
+
+    class Meta:
+        model = GalleryImage
+        fields = ['image']

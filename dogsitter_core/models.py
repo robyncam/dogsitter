@@ -65,3 +65,8 @@ class Dog(models.Model):
 class GalleryImage(models.Model):
     user = models.ForeignKey(User, models.CASCADE)
     image = models.ImageField(upload_to='profile_pics')
+
+
+class DogGalleryImage(models.Model):
+    dog = models.ForeignKey(Dog, models.CASCADE)
+    image = models.ImageField(upload_to='dog_pics')

@@ -44,6 +44,17 @@
 
 <h2> Breed: {{dog.breed}} </h2>
 
+ <p> Add photos to your photo gallery <a href="{% url 'add_dog_images' dog.pk %}">here</a></p>
+
+    {% if dog.doggalleryimage_set.exists %}
+        <p> View more pictures: </p>
+        <a href="{% url 'view_dog_gallery' dog.pk %}">
+            <img class="img-thumbnail gallery_image" alt="View Gallery" src= "{{ dog.doggalleryimage_set.first.image.url }}">
+        </a>
+    {% endif %}
+
+
+
 <button> <a href="{% url 'edit_dog' dog.pk %}"> Edit Profile</button></a>
 
 <p> Back to <a href = "{% url 'profile_page' %}">profile</a> </p>
