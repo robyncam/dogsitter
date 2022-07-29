@@ -82,7 +82,6 @@ def edit_profile(request):
 @login_required
 def profilepage(request, profile_pk):
     profile = get_object_or_404(models.Profile, pk=profile_pk)
-    current_user = request.user
     context = {'profile': profile}
     return render(request, 'profilepage.html', context)
 
