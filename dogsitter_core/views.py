@@ -123,3 +123,17 @@ def add_images(request):
 
 def view_gallery(request):
     return render(request, 'view_gallery.html')
+
+
+def edit_dog(request, dog_pk):
+    dog = get_object_or_404(models.Dog, pk=dog_pk)
+    form = DogForm(instance=dog)
+    if request.method == "POST":
+        form = DogForm(request.POST, request.FILES, instance=dog)
+        if form.is_valid():
+            dog = form.save(commit=False)
+            dog.save()
+            return redirect('profile_page')
+
+    context = {'form': form}
+    return render(request, 'edit_dog.html', context)

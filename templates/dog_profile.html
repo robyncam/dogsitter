@@ -31,6 +31,7 @@
 
 <h2> Breed: {{dog.breed}} </h2>
 
+<button> <a href="{% url 'edit_dog' dog.pk %}"> Edit Profile</button></a>
 
 <p> Back to <a href = "{% url 'profile_page' %}">profile</a> </p>
 {% endblock %}
