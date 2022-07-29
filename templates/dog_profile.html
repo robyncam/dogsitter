@@ -4,8 +4,21 @@
     Meet {{ dog.name }}!
 {% endblock %}
 
+{% block extra_css %}
+
+.profile_pic {
+    display: flex;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+{% endblock %}
+
 {% block content %}
 
+<img class="profile_pic" src="{{ dog.image.url }}">
 <h4>Hi my name is {{dog.name}}</h4>
 <h4> Weight: {{dog.weight}} pounds</h4>
 

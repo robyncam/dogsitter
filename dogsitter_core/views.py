@@ -89,7 +89,7 @@ def profilepage(request):
 def add_dog(request):
     form = DogForm()
     if request.method == "POST":
-        form = DogForm(request.POST)
+        form = DogForm(request.POST, request.FILES)
         if form.is_valid():
             dog = form.save(commit=False)
             dog.user = request.user
