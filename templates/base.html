@@ -29,6 +29,11 @@
                     <button class="top-buttons"><a href= "{% url 'login' %}">Login</a></button>
                     <button class="top-buttons"><a href= "{% url 'register' %}">Sign Up</a></button>
                 {% endif %}
+                {% if user.profile and user.is_authenticated %}
+                    <button class="top-buttons"><a href = "{% url 'profile_page' user.profile.pk %}"> Profile Page </a></button>
+                {% elif user.is_authenticated%}
+                    <button class="top-buttons"><a href = "{% url 'profile' %}"> Create Profile Page </a></button>
+                {% endif %}
                 {% if user.is_authenticated and user.profile.image %}
                 <div class="dropdown">
                     <img class="nav_profile_pic" src="{{ user.profile.image.url}}" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
