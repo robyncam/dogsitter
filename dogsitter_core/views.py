@@ -131,3 +131,18 @@ def view_gallery(request, profile_pk):
     current_user = request.user
     context = {'profile': profile, "current_user": current_user}
     return render(request, 'view_gallery.html', context)
+
+
+def update_info(request):
+    current_user = request.user
+    user = models.User.objects.get(user_id=current_user.id)
+    form = RegisterForm(instance=user)
+    if request.method == "POST":
+        form = RegisterForm(request.POST, instance=user)
+        if form.is_valid():
+            user = user.save(commit=False)
+            user.save()
+            return redirect('profile_page', profile.pk)
+
+    context = {'form': form, 'user': user}
+    return render(request, "update_info.html", context)
