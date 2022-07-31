@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
+from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm, EditUserInfo
 from django.contrib.auth.decorators import login_required
 from . import models
 
@@ -133,16 +133,14 @@ def view_gallery(request, profile_pk):
     return render(request, 'view_gallery.html', context)
 
 
-def update_info(request):
+def edit_info(request):
     current_user = request.user
-    user = models.User.objects.get(user_id=current_user.id)
-    form = RegisterForm(instance=user)
+    form = EditUserInfo(instance=current_user)
     if request.method == "POST":
-        form = RegisterForm(request.POST, instance=user)
+        form = EditUserInfo(request.POST, instance=current_user)
         if form.is_valid():
-            user = user.save(commit=False)
-            user.save()
-            return redirect('profile_page', profile.pk)
+            form.save()
+            return redirect('home')
 
-    context = {'form': form, 'user': user}
-    return render(request, "update_info.html", context)
+    context = {'form': form}
+    return render(request, "edit_info.html", context)
