@@ -6,17 +6,29 @@
 
 {%block content_nocontainer %}
 
+{% if profile.pk == user.profile.pk %}
+{%for dog in profile.user.dog_set.all %}
+    {% if dog.is_birthday_today %}
+    <h3 class="birthday-msg"> Happy Birthday {{dog}}! </h3>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
 <div class="profile-page">
     <div>
-        <img class="profile_pic" src="{{ profile.image.url }}" alt="Profile Picture">
+        <img class="profile-pic" src="{{ profile.image.url }}" alt="Profile Picture">
         {% if profile.user.galleryimage_set.exists %}
+        <p> VIEW MORE PICTURES: </p>
             <a href="{% url 'view_gallery' profile.pk %}">
                 <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.first.image.url }}">
+                    {% endif %}
+                </a>
                 {% if profile.pk == user.profile.pk %}
                     <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
                 {% endif %}
             </a>
-        {% endif %}
+
         </div>
     <div class="profile-info">
             <h1 class="name">{{profile.user.first_name}} {{profile.user.last_name}}</h1>
@@ -32,23 +44,26 @@
 </div>
 
 
+
 {% if profile.user.dog_set.exists %}
     <h1 class="dog-list">My Dogs</h1>
 {% for dog in profile.user.dog_set.all %}
     <div class="dog-section">
-        <img class="dog-img" src="{{ user.profile.image.url }}">
-        <h4 class="dog-info"><a href="{% url 'dog_profile' dog.pk %}" target="_blank">{{dog}}</h4></a>
-        <p class="dog-info"> {{dog.breed}} </p>
+        <div>
+            <a href="{% url 'dog_profile' dog.pk %}">
+                <img class="dog-img" src="{{ user.profile.image.url }}">
+            </a>
+        </div>
+        <div>
+            <h4 class="dog-info dog-name"><a href="{% url 'dog_profile' dog.pk %}"> {{dog}} </a></h4>
+            <p class="dog-info"> Breed: {{dog.breed}} </p>
+            <p class="dog-info"> {{dog.age}} old </p>
+            <p class="dog-info">About Me: {{dog.bio|truncatewords:10}} </p>
+        </div>
     </div>
 {% endfor %}
 {% endif %}
 
-
-{%for dog in profile.user.dog_set.all %}
-    {% if dog.is_birthday_today %}
-    <h3> Happy Birthday {{dog}} </h3>
-{% endif %}
-{% endfor %}
 
 
 {% endblock %}
