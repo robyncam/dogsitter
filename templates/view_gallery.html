@@ -3,16 +3,14 @@
 {% block extra_css%}
 
 .gallery-images {
-
     margin-top: 15px;
-
 }
 
 {% endblock %}
 
 {% block content %}
 
-{% for galleryimage in user.galleryimage_set.all %}
+{% for galleryimage in profile.user.galleryimage_set.all %}
     <div class="col-lg gallery-images">
         <div class="text-center mt-2">
             <img src="{{ galleryimage.image.url }}" class="img-thumbnail" alt="...">
