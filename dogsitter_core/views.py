@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm, EditUserInfo
 from django.contrib.auth.decorators import login_required
@@ -144,3 +146,17 @@ def edit_info(request):
 
     context = {'form': form}
     return render(request, "edit_info.html", context)
+
+
+@login_required
+def change_password(request):
+    form = PasswordChangeForm(request.user)
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'change_password.html', context)
