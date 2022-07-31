@@ -189,17 +189,28 @@
     }
 
     .profile-info {
-            padding: 0px 20px;
+        padding: 0px 20px;
 
     }
 
-    .dog-section {
-        text-align: center;
-
-    }
-
-    .user-dogs {
-        text-align: center;
+.activities {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
 
 
-    }
+}
+
+.activity {
+    border: 1px solid #152F42;
+    width: 250px;
+    height: 250px;
+    margin: 50px auto 20px auto;
+    border-radius: 80%;
+}
+
+.explore {
+    text-align: center;
+    max-width: 250px;
+}

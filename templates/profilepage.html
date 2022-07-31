@@ -25,16 +25,17 @@
 </div>
 
 {% if user.dog_set.exists %}
-<div class="dog-section">
-    <div>
-    <h1>My Dogs: </h1>
-    {% for dog in user.dog_set.all %}
-    <div class="user-dogs">
-    <ul><a href="{% url 'dog_profile' dog.pk %}"> {{dog}} </a> </ul>
-    {% endfor %}
+{% for dog in user.dog_set.all %}
+        <div class="activities">
+        <div>
+            <img class="activity" src="{{ user.profile.image.url }}"">
+            <h4 class="explore"><a href="{% url 'dog_profile' dog.pk %}">{{dog}}</h4></a>
+            <p class="explore"> {{dog.breed}} </p>
+        </div>
+
+                {% endfor %}
     {% endif %}
-                </div>
-</div>
+
 
 {%for dog in user.dog_set.all %}
     {% if dog.is_birthday_today %}
@@ -42,6 +43,7 @@
 {% endif %}
 {% endfor %}
 
+<div>
     <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
     {% if user.galleryimage_set.exists %}
         <p> View more pictures: </p>
@@ -49,5 +51,5 @@
             <img class="img-thumbnail gallery_image" alt="View Gallery" src= "{{ user.galleryimage_set.first.image.url }}">
         </a>
     {% endif %}
-
+</div>
 {% endblock %}
