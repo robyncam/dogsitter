@@ -22,7 +22,7 @@
         {% if dog.good_with_cats %}
             <p>I am good with cats   <img class="icon" src="{% static '/dogsitter/pets-allowed.png' %}"></p>
         {% else %}
-            <p>I am not good with cats<img class="icon" src="{% static '/dogsitter/no-animals.png' %}"></p>
+            <p>I am not good with cats <img class="icon" src="{% static '/dogsitter/no-animals.png' %}"></p>
         {% endif %}
         {% if dog.good_with_kids %}
         <p>I am good with kids  <img class="icon" src="{% static '/dogsitter/kids.png' %}"></p>
@@ -34,11 +34,10 @@
         {% else %}
             <p>I am not good with dogs <img class="icon" src="{% static '/dogsitter/no-animals.png' %}"></p>
         {% endif %}
-        <button class="top-buttons"><a href="{% url 'profile_page' %}">Back to Profile </a> </button>
+        <button class="top-buttons"><a href="{% url 'profile_page' dog.user.profile.pk %}">Back to Profile </a> </button>
 
 
 </div>
 </div>
-<p> Back to <a href = "{% url 'profile_page' dog.user.profile.pk %}">profile</a> </p>
 
 {% endblock %}
