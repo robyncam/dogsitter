@@ -16,7 +16,7 @@ urlpatterns = [
     path('dog-profile/<int:dog_pk>', views.dog_profile, name='dog_profile'),
     path('view-gallery', views.view_gallery, name='view_gallery'),
     path('search-results', views.search_results, name='search_results'),
-    path('search-engine', views.search_engine, name='search_engine'),
+    path('search', views.search, name='search'),
 
 ]
 

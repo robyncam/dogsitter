@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
+from django.db.models import Q
 from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
 from django.contrib.auth.decorators import login_required
 from . import models
@@ -107,25 +108,29 @@ def dog_profile(request, dog_pk):
     return render(request, 'dog_profile.html', context)
 
 
+@login_required
 def search_results(request):
     if request.method == "POST":
         searched_location = request.POST['searched_location']
         searched_name = request.POST['searched_name']
         searched_cost = request.POST['searched_cost']
+        search_query = Q(profile__is_dog_sitter=True)
+        if searched_name:
+            search_query &= (Q(first_name__contains=searched_name) |
+                             Q(last_name__contains=searched_name))
         if searched_cost:
-            available_sitters = User.objects.filter(profile__location__contains=searched_location,
-                                                    first_name__contains=searched_name,
-                                                    profile__cost__lte=searched_cost)
-        else:
-            available_sitters = User.objects.filter(profile__location__contains=searched_location,
-                                                    first_name__contains=searched_name)
+            search_query &= Q(profile__cost__lte=searched_cost)
+        if searched_location:
+            search_query &= Q(profile__location__contains=searched_location)
+        available_sitters = User.objects.filter(search_query)
+
         context = {'available_sitters':  available_sitters}
         return render(request, 'search_results.html', context)
 
 
 @login_required
-def search_engine(request):
-    return render(request, 'search_engine.html')
+def search(request):
+    return render(request, 'search.html')
 
 
 @login_required
