@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm, \
-    DogGalleryImageForm
+from .forms import (RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm,
+                    DogGalleryImageForm)
 from django.contrib.auth.decorators import login_required
 from . import models
+from django.core.exceptions import PermissionDenied
 
 
 def home(request):
@@ -68,6 +69,8 @@ def profile(request):
 def edit_profile(request):
     current_user = request.user
     profile = models.Profile.objects.get(user_id=current_user.id)
+    if current_user != profile.user:
+        raise PermissionDenied
     form = ProfileForm(instance=profile)
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -130,12 +133,13 @@ def view_gallery(request):
 @login_required()
 def edit_dog(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
+    if dog.user != request.user:
+        raise PermissionDenied
     form = DogForm(instance=dog)
     if request.method == "POST":
         form = DogForm(request.POST, request.FILES, instance=dog)
         if form.is_valid():
-            dog = form.save(commit=False)
-            dog.save()
+            dog = form.save()
             return redirect('profile_page')
 
     context = {'form': form}
@@ -145,6 +149,8 @@ def edit_dog(request, dog_pk):
 @login_required()
 def add_dog_images(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
+    if dog.user != request.user:
+        raise PermissionDenied
     form = DogGalleryImageForm()
     if request.method == "POST":
         form = DogGalleryImageForm(request.POST, request.FILES)
