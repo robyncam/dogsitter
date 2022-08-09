@@ -219,3 +219,19 @@ def create_dogsitter_profile(request):
     context = {'form': form}
     return render(request, 'create_dogsitter_profile.html', context)
 
+@login_required
+def edit_dogsitter_profile(request):
+    current_user = request.user
+    dogsitterprofile = models.DogSitterProfile.objects.get(user_id=current_user.id)
+    if current_user != dogsitterprofile.user:
+        raise PermissionDenied
+    form = DogSitterProfileForm(instance=dogsitterprofile)
+    if request.method == "POST":
+        form = DogSitterProfileForm(request.POST, instance=dogsitterprofile)
+        if form.is_valid():
+            dogsitterprofile = form.save(commit=False)
+            dogsitterprofile.save()
+            return redirect('profile_page', dogsitterprofile.pk)
+
+    context = {'form': form, 'profile': profile}
+    return render(request, 'edit_profile.html', context)

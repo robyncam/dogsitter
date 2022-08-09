@@ -82,7 +82,11 @@
 
 {% endif %}
 
-
+{% if user.dogsitterprofile %}
+<h2> Update Dogsitting Information <a href="{% url 'edit_dogsitter_profile' %}">here</a></h2>
+{% else %}
+<h2> Become a dogsitter - Update your <a href="{% url 'create_dogsitter_profile' %}"> DogSitting Profile </a></h2>
+{% endif %}
 
 
 
