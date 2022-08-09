@@ -64,7 +64,7 @@ class DogForm(forms.ModelForm):
         }
 
         fields = ['name', 'dob', 'weight', 'good_with_cats',
-                  'good_with_kids', 'good_with_dogs', 'bio', 'dob', 'breed']
+                  'good_with_kids', 'good_with_dogs', 'bio', 'dob', 'breed', 'image']
 
 
 class GalleryImageForm(forms.ModelForm):
@@ -78,10 +78,22 @@ class GalleryImageForm(forms.ModelForm):
         fields = ['image']
 
 
+
 class EditUserInfo(UserChangeForm):
     password = None
 
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+
+
+class DogGalleryImageForm(forms.ModelForm):
+    image = forms.ImageField(
+            label="Add some more pictures",
+            widget=forms.ClearableFileInput(attrs={'multiple': True}),
+            )
+
+    class Meta:
+        model = GalleryImage
+        fields = ['image']
 

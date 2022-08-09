@@ -36,6 +36,7 @@ class Dog(models.Model):
     bio = models.TextField(max_length=100000)
     dob = models.DateField()
     breed = models.CharField(max_length=100, choices=BREED_CHOICES, default="")
+    image = models.ImageField(default='DogProfile.png', upload_to='dog_pics')
 
     def __str__(self):
         return str(self.name)
@@ -64,3 +65,8 @@ class Dog(models.Model):
 class GalleryImage(models.Model):
     user = models.ForeignKey(User, models.CASCADE)
     image = models.ImageField(upload_to='profile_pics')
+
+
+class DogGalleryImage(models.Model):
+    dog = models.ForeignKey(Dog, models.CASCADE)
+    image = models.ImageField(upload_to='dog_pics')
