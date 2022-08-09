@@ -9,15 +9,14 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
     path('profile', views.profile, name='profile'),
-    path('profile-page', views.profilepage, name='profile_page'),
+    path('profile-page/<int:profile_pk>', views.profilepage, name='profile_page'),
     path('edit-profile', views.edit_profile, name='edit_profile'),
     path('add-images', views.add_images, name='add_images'),
     path('add-dog', views.add_dog, name='add_dog'),
     path('dog-profile/<int:dog_pk>', views.dog_profile, name='dog_profile'),
-    path('view-gallery', views.view_gallery, name='view_gallery'),
     path('search-results', views.search_results, name='search_results'),
     path('search', views.search, name='search'),
-
+    path('view-gallery/<int:profile_pk>', views.view_gallery, name='view_gallery'),
 ]
 
 if settings.DEBUG:

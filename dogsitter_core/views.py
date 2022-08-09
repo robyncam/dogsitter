@@ -74,20 +74,23 @@ def edit_profile(request):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.save()
-            return redirect('profile_page')
+            return redirect('profile_page', profile.pk)
 
-    context = {'form': form}
+    context = {'form': form, 'profile': profile}
     return render(request, 'edit_profile.html', context)
 
 
 @login_required
-def profilepage(request):
-    context = {'profile': request.user.profile}
+def profilepage(request, profile_pk):
+    profile = get_object_or_404(models.Profile, pk=profile_pk)
+    context = {'profile': profile}
     return render(request, 'profilepage.html', context)
 
 
 @login_required
 def add_dog(request):
+    current_user = request.user
+    profile = models.Profile.objects.get(user_id=current_user.id)
     form = DogForm()
     if request.method == "POST":
         form = DogForm(request.POST)
@@ -95,9 +98,9 @@ def add_dog(request):
             dog = form.save(commit=False)
             dog.user = request.user
             dog.save()
-            return redirect('profile_page')
+            return redirect('profile_page', profile.pk)
 
-    context = {'form': form}
+    context = {'form': form, 'profile': profile}
     return render(request, "add_dog.html", context)
 
 
@@ -135,6 +138,8 @@ def search(request):
 
 @login_required
 def add_images(request):
+    current_user = request.user
+    profile = models.Profile.objects.get(user_id=current_user.id)
     form = GalleryImageForm()
     if request.method == "POST":
         form = GalleryImageForm(request.POST, request.FILES)
@@ -142,12 +147,16 @@ def add_images(request):
             images = request.FILES.getlist('image')
             for image in images:
                 models.GalleryImage.objects.create(image=image, user=request.user)
-            return redirect('profile_page')
+            return redirect('profile_page', profile.pk)
 
-    context = {'form': form}
+    context = {'form': form, 'profile': profile}
     return render(request, 'add_images.html', context)
 
 
 @login_required
-def view_gallery(request):
-    return render(request, 'view_gallery.html')
+def view_gallery(request, profile_pk):
+    profile = get_object_or_404(models.Profile, pk=profile_pk)
+    current_user = request.user
+    context = {'profile': profile, "current_user": current_user}
+    return render(request, 'view_gallery.html', context)
+
