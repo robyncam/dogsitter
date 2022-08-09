@@ -1,13 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
-<<<<<<< HEAD
 from .forms import (RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm,
                     DogGalleryImageForm)
-=======
 from django.db.models import Q
-from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
->>>>>>> master
 from django.contrib.auth.decorators import login_required
 from . import models
 from django.core.exceptions import PermissionDenied
@@ -159,6 +155,7 @@ def add_images(request):
 
     context = {'form': form, 'profile': profile}
     return render(request, 'add_images.html', context)
+
 
 @login_required()
 def edit_dog(request, dog_pk):
