@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Dog, GalleryImage
+from .models import Profile, Dog, GalleryImage, DogSitterProfile
 from datetime import date
 
 
@@ -24,22 +24,33 @@ class ProfileForm(forms.ModelForm):
     BOOL_CHOICES = [(True, 'Yes'), (False, 'No')]
     is_dog_sitter = forms.CharField(label='Are you a dog sitter?',
                                     widget=forms.RadioSelect(choices=BOOL_CHOICES))
-    yard = forms.CharField(label='Do you have a yard?',
-                           widget=forms.RadioSelect(choices=BOOL_CHOICES))
 
     class Meta:
         model = Profile
         labels = {
             'location': 'Where are you located?',
-            'cost': 'How much do you charge per day?',
             'bio': 'Tell us a bit about yourself',
-            'living_arrangements': 'Which option best describes your living situation',
-            'housing': 'Where do you live?',
             'image': 'Upload a profile photo: '
         }
 
-        fields = ['location', 'cost', 'is_dog_sitter', 'bio', 'housing',
-                  'living_arrangements', 'yard', 'image']
+        fields = ['location', 'is_dog_sitter', 'bio','image']
+
+
+class DogSitterProfileForm(forms.ModelForm):
+    BOOL_CHOICES = [(True, 'Yes'), (False, 'No')]
+    yard = forms.CharField(label='Do you have a yard?',
+                           widget=forms.RadioSelect(choices=BOOL_CHOICES))
+
+    class Meta:
+        model = DogSitterProfile
+        labels = {
+            'cost': 'How much do you charge per day?',
+            'living_arrangements': 'Which option best describes your living situation',
+            'housing': 'Where do you live?',
+
+        }
+
+        fields = ['cost', 'housing', 'living_arrangements', 'yard']
 
 
 class LoginForm(forms.ModelForm):

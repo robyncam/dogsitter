@@ -5,6 +5,17 @@ from datetime import date
 
 
 class Profile(models.Model):
+    user = models.OneToOneField(User, models.CASCADE)
+    location = models.CharField(max_length=1000)
+    bio = models.TextField(max_length=1000000)
+    is_dog_sitter = models.BooleanField(default=False)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+
+    def __str__(self):
+        return str(self.user)
+
+
+class DogSitterProfile(models.Model):
     ALONE = 'I live alone'
     WITH_SPOUSE = 'I live with my spouse/partner'
     WITH_ROOMMATES = 'I live with roommates'
@@ -33,17 +44,10 @@ class Profile(models.Model):
     ]
 
     user = models.OneToOneField(User, models.CASCADE)
-    location = models.CharField(max_length=1000)
-    cost = models.DecimalField(decimal_places=2, max_digits=7)
-    is_dog_sitter = models.BooleanField(default=False)
-    bio = models.TextField(max_length=1000000)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     living_arrangements = models.CharField(max_length=100, choices=LIVING_ARRANGEMENTS, default="")
     housing = models.CharField(max_length=100, choices=HOUSE_CHOICES, default="")
     yard = models.BooleanField(default=False)
-
-    def __str__(self):
-        return str(self.user)
+    cost = models.DecimalField(decimal_places=2, max_digits=7)
 
 
 class Dog(models.Model):

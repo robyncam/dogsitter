@@ -31,19 +31,13 @@
     <img class="profile_pic" src="{{ profile.image.url }}" alt="Profile Picture">
     <h3> About </h3>
     <h4> I am located in: {{profile.location}} </h4>
-    <h4>I charge: {{profile.cost}} per day</h4>
+    <h4>I charge: {{dogsitter_profile.cost}} per day</h4>
     {% if profile.is_dog_sitter %}
         <h4> I am a dog sitter!</h4>
     {% endif %}
     <h4> A little about me: </h4>
     <p>{{profile.bio}}</p>
-    <p> {{profile.housing}}</p>
-    <p>{{profile.living_arrangements}}</p>
-    {% if profile.yard %}
-        <p> I have a yard </p>
-    {% else %}
-        <p> I do not have a yard </p>
-    {% endif %}
+
     {% if profile.user.dog_set.exists %}
         <p>My Dogs: </p>
         {% for dog in profile.user.dog_set.all %}
@@ -73,6 +67,21 @@
     <p>Update your profile<a href = "{% url 'edit_profile' %}"> here </a></p>
     <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
 {% endif %}
+
+
+{% if user.dogsitterprofile %}
+<h1> I charge: {{user.dogsitterprofile.cost}} per day </h1>
+<h1> {{user.dogsitterprofile.housing}}</h1>
+<h1> {{user.dogsitterprofile.living_arrangements}}</h1>
+{% endif %}
+
+{% if user.dogsitterprofile.yard %}
+<h1> I have a yard </h1>
+{% else %}
+<h1> I do not have a yard </h1>
+
+{% endif %}
+
 
 
 

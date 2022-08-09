@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from .forms import (RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm,
-                    DogGalleryImageForm)
+                    DogGalleryImageForm, DogSitterProfileForm)
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from . import models
@@ -203,3 +203,19 @@ def view_gallery(request, profile_pk):
     current_user = request.user
     context = {'profile': profile, "current_user": current_user}
     return render(request, 'view_gallery.html', context)
+
+
+@login_required
+def create_dogsitter_profile(request):
+    form = DogSitterProfileForm()
+    if request.method == "POST":
+        form = DogSitterProfileForm(request.POST)
+        if form.is_valid():
+            dogsitterprofile = form.save(commit=False)
+            dogsitterprofile.user = request.user
+            dogsitterprofile.save()
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'create_dogsitter_profile.html', context)
+
