@@ -18,19 +18,9 @@
 <div class="profile-page">
     <div>
         <img class="profile-pic" src="{{ profile.image.url }}" alt="Profile Picture">
-        {% if profile.user.galleryimage_set.exists %}
-        <p> VIEW MORE PICTURES: </p>
-            <a href="{% url 'view_gallery' profile.pk %}">
-                <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.first.image.url }}">
-                    {% endif %}
-                </a>
-                {% if profile.pk == user.profile.pk %}
-                    <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
-                {% endif %}
-            </a>
-
-        </div>
-    <div class="profile-info">
+    </div>
+    <div>
+        <div class="profile-info">
             <h1 class="name">{{profile.user.first_name}} {{profile.user.last_name}}</h1>
             <p> Location: {{profile.location}} </p>
             <p>Rate: {{profile.cost}} per day</p>
@@ -40,9 +30,33 @@
             <p>I am looking for a dog sitter</p>
             <h4> Get to know me: </h4>
             <p>{{user.profile.bio}}</p>
+        </div>
     </div>
 </div>
 
+<div class="profile-additional">
+    <div class="living-info">
+        <p> I have a yard </p>
+        <p> I live in an apartment</p>
+        <p> I live alone </p>
+    </div>
+    <div>
+        <div class="profile-gallery">
+            {% if profile.user.galleryimage_set.exists %}
+            <a href="{% url 'view_gallery' profile.pk %}">
+                <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.0.image.url }}">
+                <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.1.image.url }}">
+                <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.2.image.url }}">
+                {% else %}
+                    <p> User has not uploaded any pictures yet...! </p>
+                {% endif %}
+                {% if profile.pk == user.profile.pk %}
+                    <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
+                {% endif %}
+            </a>
+        </div>
+    </div>
+</div>
 
 
 {% if profile.user.dog_set.exists %}

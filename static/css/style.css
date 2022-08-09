@@ -13,7 +13,7 @@
         height: 100px;
         color: white;
         font-family: 'Cantarell', sans-serif;
-        }
+    }
 
     .header-title {
         font-family: 'Shrikhand', cursive;
@@ -82,16 +82,6 @@
 
     }
 
-    .gallery-image {
-        margin-top: 20px;
-        width: 250px;
-        height: 250px;
-        overflow: hidden;
-        object-fit: cover;
-
-    }
-
-
     .hero-text {
         text-align: center;
         color: white;
@@ -150,8 +140,7 @@
 
     }
 
-    .dog-pic{
-        margin-top: 20px;
+    .dog-pic {
         display: in-line;
         text-align: center;
         width:400px;
@@ -159,11 +148,12 @@
         overflow: hidden;
         object-fit: cover;
         border-radius: 25px;
+        margin: 20px 20px;
 
     }
 
-    .dog-info{
-        padding: 0px 20px;
+    .dog-info {
+        padding: 40px 40px;
     }
 
     .profile-pic {
@@ -181,7 +171,7 @@
     }
 
 
-    .profile-page{
+    .profile-page {
         max-width: 1500px;
         margin: 35px auto 40px auto;
         border-radius: 20px;
@@ -194,10 +184,47 @@
 
     }
 
-    .profile-info {
-        padding: 0px 20px;
+    .profile-additional {
+        max-width: 1500px;
+        margin: 35px auto 40px auto;
+        border-radius: 20px;
+        background-color: #f9dcc4;
+        justify-content: space-around;
+        text-align: center;
+        padding: 20px 20px;
+        display: flex;
+
     }
 
+    .living-info {
+        align-items: center;
+
+    }
+
+    .profile-info {
+        
+        width: 900px;
+        display: block;
+        margin-top: 0px;
+        margin-left: 20px;
+        padding: 20px 40px;
+
+    }
+
+    .profile-gallery {
+        display: block;
+        width: 800px;
+        padding: 20px 20px;
+
+    }
+
+     .gallery-image {
+        margin-top: 20px;
+        width: 250px;
+        height: 250px;
+        overflow: hidden;
+        object-fit: cover;
+    }
 
     .dog-list {
         margin-top: 20px;
@@ -219,7 +246,6 @@
         background-color: white;
         padding: 20px 40px;
         border-radius: 20px;
-
     }
 
     .dog-info {
@@ -228,7 +254,6 @@
     }
 
     .dog-name {
-
         font-size: 30px;
     }
 
