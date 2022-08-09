@@ -78,7 +78,6 @@ class GalleryImageForm(forms.ModelForm):
         fields = ['image']
 
 
-
 class EditUserInfo(UserChangeForm):
     password = None
 
@@ -96,4 +95,3 @@ class DogGalleryImageForm(forms.ModelForm):
     class Meta:
         model = GalleryImage
         fields = ['image']
-
