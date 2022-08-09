@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
+from .forms import (RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm,
+                    DogGalleryImageForm)
 from django.db.models import Q
-from .forms import RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm
 from django.contrib.auth.decorators import login_required
 from . import models
+from django.core.exceptions import PermissionDenied
 
 
 def home(request):
@@ -68,6 +70,8 @@ def profile(request):
 def edit_profile(request):
     current_user = request.user
     profile = models.Profile.objects.get(user_id=current_user.id)
+    if current_user != profile.user:
+        raise PermissionDenied
     form = ProfileForm(instance=profile)
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -93,7 +97,7 @@ def add_dog(request):
     profile = models.Profile.objects.get(user_id=current_user.id)
     form = DogForm()
     if request.method == "POST":
-        form = DogForm(request.POST)
+        form = DogForm(request.POST, request.FILES)
         if form.is_valid():
             dog = form.save(commit=False)
             dog.user = request.user
@@ -153,10 +157,49 @@ def add_images(request):
     return render(request, 'add_images.html', context)
 
 
+@login_required()
+def edit_dog(request, dog_pk):
+    dog = get_object_or_404(models.Dog, pk=dog_pk)
+    if dog.user != request.user:
+        raise PermissionDenied
+    form = DogForm(instance=dog)
+    if request.method == "POST":
+        form = DogForm(request.POST, request.FILES, instance=dog)
+        if form.is_valid():
+            dog = form.save()
+            return redirect('profile_page')
+
+    context = {'form': form}
+    return render(request, 'edit_dog.html', context)
+
+
+@login_required()
+def add_dog_images(request, dog_pk):
+    dog = get_object_or_404(models.Dog, pk=dog_pk)
+    if dog.user != request.user:
+        raise PermissionDenied
+    form = DogGalleryImageForm()
+    if request.method == "POST":
+        form = DogGalleryImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            images = request.FILES.getlist('image')
+            for image in images:
+                models.DogGalleryImage.objects.create(image=image, dog=dog)
+            return redirect('profile_page')
+
+    context = {'form': form}
+    return render(request, 'add_images.html', context)
+
+
+def view_dog_gallery(request, dog_pk):
+    dog = get_object_or_404(models.Dog, pk=dog_pk)
+    context = {'dog': dog}
+    return render(request, 'view_dog_gallery.html', context)
+
+
 @login_required
 def view_gallery(request, profile_pk):
     profile = get_object_or_404(models.Profile, pk=profile_pk)
     current_user = request.user
     context = {'profile': profile, "current_user": current_user}
     return render(request, 'view_gallery.html', context)
-

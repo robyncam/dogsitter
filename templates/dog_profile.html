@@ -4,8 +4,21 @@
     Meet {{dog.name}}!
 {% endblock %}
 
+{% block extra_css %}
+
+.profile_pic {
+    display: flex;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+{% endblock %}
+
 {% block content %}
 
+<img class="profile_pic" src="{{ dog.image.url }}">
 <h4>Hi my name is {{dog.name}}</h4>
 <h4> Weight: {{dog.weight}} pounds</h4>
 
@@ -31,6 +44,18 @@
 
 <h2> Breed: {{dog.breed}} </h2>
 
+ <p> Add photos to your photo gallery <a href="{% url 'add_dog_images' dog.pk %}">here</a></p>
+
+    {% if dog.doggalleryimage_set.exists %}
+        <p> View more pictures: </p>
+        <a href="{% url 'view_dog_gallery' dog.pk %}">
+            <img class="img-thumbnail gallery_image" alt="View Gallery" src= "{{ dog.doggalleryimage_set.first.image.url }}">
+        </a>
+    {% endif %}
+
+
+
+<button> <a href="{% url 'edit_dog' dog.pk %}"> Edit Profile</button></a>
 
 <p> Back to <a href = "{% url 'profile_page' dog.user.profile.pk %}">profile</a> </p>
 {% endblock %}

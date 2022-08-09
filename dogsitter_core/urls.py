@@ -14,9 +14,13 @@ urlpatterns = [
     path('add-images', views.add_images, name='add_images'),
     path('add-dog', views.add_dog, name='add_dog'),
     path('dog-profile/<int:dog_pk>', views.dog_profile, name='dog_profile'),
+    path('edit-dog/<int:dog_pk>', views.edit_dog, name='edit_dog'),
+    path('add-dog-images/<int:dog_pk>', views.add_dog_images, name='add_dog_images'),
+    path('view-dog-gallery/<int:dog_pk>', views.view_dog_gallery, name='view_dog_gallery'),
     path('search-results', views.search_results, name='search_results'),
     path('search', views.search, name='search'),
     path('view-gallery/<int:profile_pk>', views.view_gallery, name='view_gallery'),
+
 ]
 
 if settings.DEBUG:
