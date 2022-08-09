@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <style>
+
 
         .main-header {
             background: #f3722c;
@@ -69,7 +71,7 @@
 <body>
     <header class = "main-header">
         <div class ="nav-container">
-            <h1> DogSitters</h1>
+            <h1>DogSitters</h1>
             <div class = "main-nav">
                 {% if user.is_authenticated %}
                     <h4> Welcome {{user.username}}!</h4>
@@ -83,7 +85,7 @@
                     <button class="top-buttons"><a href= "{% url 'login' %}">Login</a></button>
                 {% endif %}
                 {% if user.profile and user.is_authenticated %}
-                    <button class="top-buttons"><a href = "{% url 'profile_page' %}"> Profile Page </a></button>
+                    <button class="top-buttons"><a href = "{% url 'profile_page' user.profile.pk %}"> Profile Page </a></button>
                 {% elif user.is_authenticated%}
                     <button class="top-buttons"><a href = "{% url 'profile' %}"> Create Profile Page </a></button>
                 {% endif %}
@@ -96,8 +98,8 @@
     {% for message in messages %}
         <div class="message">{{message}}</div>
     {% endfor %}
-
     {% block content_nocontainer %}
+
         <div class="container">
             {% block content %}{% endblock content %}
         </div>

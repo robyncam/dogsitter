@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Meet {{ dog.name }}!
+    Meet {{dog.name}}!
 {% endblock %}
 
 {% block extra_css %}
@@ -57,5 +57,5 @@
 
 <button> <a href="{% url 'edit_dog' dog.pk %}"> Edit Profile</button></a>
 
-<p> Back to <a href = "{% url 'profile_page' %}">profile</a> </p>
+<p> Back to <a href = "{% url 'profile_page' dog.user.profile.pk %}">profile</a> </p>
 {% endblock %}
