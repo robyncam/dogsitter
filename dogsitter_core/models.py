@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from datetime import date
+from multiselectfield import MultiSelectField
 
 
 class Profile(models.Model):
@@ -40,7 +41,18 @@ class DogSitterProfile(models.Model):
         (APARTMENT, 'I live in an apartment'),
         (CONDO, 'I live in a condo'),
         (ALTERNATIVE, 'I live in an alternative style of housing'),
+    ]
 
+    SMALL ="Small Dogs (up to 22lbs)"
+    MEDIUM = "Medium Dogs (23lbs to 55lbs)"
+    LARGE = "Large Dogs (up to 100lbs)"
+    EXTRA_LARGE = "Extra Large Dogs (over 100lbs)"
+
+    DOG_SIZES = [
+        (SMALL, "Small Dogs (up to 22lbs)"),
+        (MEDIUM, "Medium Dogs (23lbs to 55lbs)"),
+        (LARGE, "Large Dogs (up to 100lbs)"),
+        (EXTRA_LARGE, "Extra Large Dogs (over 100lbs)"),
     ]
 
     user = models.OneToOneField(User, models.CASCADE)
@@ -48,6 +60,7 @@ class DogSitterProfile(models.Model):
     housing = models.CharField(max_length=100, choices=HOUSE_CHOICES, default="")
     yard = models.BooleanField(default=False)
     cost = models.DecimalField(decimal_places=2, max_digits=7)
+    dog_sizes = MultiSelectField(choices=DOG_SIZES, default='')
 
 
 class Dog(models.Model):

@@ -4,6 +4,9 @@ from .models import Profile, Dog, GalleryImage, DogSitterProfile
 from datetime import date
 
 
+
+
+
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(max_length=100, widget=forms.PasswordInput)
     confirm_password = forms.CharField(max_length=100, widget=forms.PasswordInput)
@@ -50,7 +53,7 @@ class DogSitterProfileForm(forms.ModelForm):
 
         }
 
-        fields = ['cost', 'housing', 'living_arrangements', 'yard']
+        fields = ['cost', 'housing', 'living_arrangements', 'yard', 'dog_sizes']
 
 
 class LoginForm(forms.ModelForm):

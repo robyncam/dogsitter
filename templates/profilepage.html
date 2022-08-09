@@ -88,6 +88,8 @@
 <h2> Become a dogsitter - Update your <a href="{% url 'create_dogsitter_profile' %}"> DogSitting Profile </a></h2>
 {% endif %}
 
-
-
+{% if user.dogsitterprofile.dog_sizes %}
+<h2> I have expereince watching: </h2>
+<ul>{{user.dogsitterprofile.dog_sizes}}</ul>
+{% endif %}
 {% endblock %}
