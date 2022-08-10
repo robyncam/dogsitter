@@ -9,7 +9,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
     location = models.CharField(max_length=1000)
     bio = models.TextField(max_length=1000000)
-    is_dog_sitter = models.BooleanField(default=False)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):
@@ -43,7 +42,7 @@ class DogSitterProfile(models.Model):
         (ALTERNATIVE, 'I live in an alternative style of housing'),
     ]
 
-    SMALL ="Small Dogs (up to 22lbs)"
+    SMALL = "Small Dogs (up to 22lbs)"
     MEDIUM = "Medium Dogs (23lbs to 55lbs)"
     LARGE = "Large Dogs (up to 100lbs)"
     EXTRA_LARGE = "Extra Large Dogs (over 100lbs)"
@@ -55,12 +54,49 @@ class DogSitterProfile(models.Model):
         (EXTRA_LARGE, "Extra Large Dogs (over 100lbs)"),
     ]
 
+    ZERO_ = 'your dog will not be left alone'
+    UP_TO_TWO = 'up to two hours'
+    UP_TO_FOUR = 'up to four hours'
+    UP_TO_EIGHT = 'up to eight hours'
+
+    HOURS_CHOICES = [
+        (ZERO_, 'Your dog will not be left alone'),
+        (UP_TO_TWO, 'Up to two hours'),
+        (UP_TO_FOUR, 'Up to four hours'),
+        (UP_TO_EIGHT, 'Up to eight hours'),
+    ]
+
+    ONE = 'one'
+    TWO = 'two'
+    TWO_PLUS = 'more than two'
+
+    WALK_CHOICES = [
+        (ONE, 'One'),
+        (TWO, 'Two'),
+        (TWO_PLUS, 'More than two'),
+    ]
+
+    DOGBED = 'dogbed'
+    BED = 'on the bed'
+    COUCH = 'on the couch'
+    ANYWHERE = 'wherever they would like'
+
+    SLEEPING_CHOICES = [
+        (DOGBED, 'On a dogbed'),
+        (BED, 'On the bed'),
+        (COUCH, 'On the couch'),
+        (ANYWHERE, 'Wherever they would like'),
+    ]
+
     user = models.OneToOneField(User, models.CASCADE)
-    living_arrangements = models.CharField(max_length=100, choices=LIVING_ARRANGEMENTS, default="")
-    housing = models.CharField(max_length=100, choices=HOUSE_CHOICES, default="")
+    living_arrangements = models.CharField(max_length=1000, choices=LIVING_ARRANGEMENTS, default="")
+    housing = models.CharField(max_length=1000, choices=HOUSE_CHOICES, default="")
     yard = models.BooleanField(default=False)
     cost = models.DecimalField(decimal_places=2, max_digits=7)
     dog_sizes = MultiSelectField(choices=DOG_SIZES, default='')
+    hours_alone = models.CharField(max_length=1000, choices=HOURS_CHOICES, default="")
+    walks = models.CharField(max_length=1000, choices=WALK_CHOICES, default="")
+    sleeping_arrangements = models.CharField(max_length=1000, choices=SLEEPING_CHOICES, default="")
 
 
 class Dog(models.Model):

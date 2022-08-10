@@ -31,7 +31,6 @@
     <img class="profile_pic" src="{{ profile.image.url }}" alt="Profile Picture">
     <h3> About </h3>
     <h4> I am located in: {{profile.location}} </h4>
-    <h4>I charge: {{dogsitter_profile.cost}} per day</h4>
     {% if profile.is_dog_sitter %}
         <h4> I am a dog sitter!</h4>
     {% endif %}
@@ -73,13 +72,15 @@
 <h1> I charge: {{user.dogsitterprofile.cost}} per day </h1>
 <h1> {{user.dogsitterprofile.housing}}</h1>
 <h1> {{user.dogsitterprofile.living_arrangements}}</h1>
+<h1> Your dog will be left alone for: {{user.dogsitterprofile.hours_alone}}</h1>
+<h1> Your dog will get {{user.dogsitterprofile.walks}} walks per day </h1>
+<h1> Your dog will sleep {{user.dogsitterprofile.sleeping_arrangements}} at night </h1>
 {% endif %}
 
 {% if user.dogsitterprofile.yard %}
 <h1> I have a yard </h1>
 {% else %}
 <h1> I do not have a yard </h1>
-
 {% endif %}
 
 {% if user.dogsitterprofile %}
@@ -88,8 +89,12 @@
 <h2> Become a dogsitter - Update your <a href="{% url 'create_dogsitter_profile' %}"> DogSitting Profile </a></h2>
 {% endif %}
 
-{% if user.dogsitterprofile.dog_sizes %}
-<h2> I have expereince watching: </h2>
-<ul>{{user.dogsitterprofile.dog_sizes}}</ul>
+
+{% if user.dogsitterprofile %}
+<h2> Accepted Dog Sizes into home: </h2>
+{% for size in user.dogsitterprofile.dog_sizes %}
+<ul>{{size}}</ul>
+{% endfor %}
 {% endif %}
 {% endblock %}
+

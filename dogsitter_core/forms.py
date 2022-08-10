@@ -24,10 +24,6 @@ class RegisterForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    BOOL_CHOICES = [(True, 'Yes'), (False, 'No')]
-    is_dog_sitter = forms.CharField(label='Are you a dog sitter?',
-                                    widget=forms.RadioSelect(choices=BOOL_CHOICES))
-
     class Meta:
         model = Profile
         labels = {
@@ -36,7 +32,7 @@ class ProfileForm(forms.ModelForm):
             'image': 'Upload a profile photo: '
         }
 
-        fields = ['location', 'is_dog_sitter', 'bio','image']
+        fields = ['location', 'bio', 'image']
 
 
 class DogSitterProfileForm(forms.ModelForm):
@@ -48,12 +44,15 @@ class DogSitterProfileForm(forms.ModelForm):
         model = DogSitterProfile
         labels = {
             'cost': 'How much do you charge per day?',
-            'living_arrangements': 'Which option best describes your living situation',
+            'living_arrangements': 'Which option best describes your living situation?',
             'housing': 'Where do you live?',
-
+            'dog_sizes': 'What size of dog will you accept into your home?',
+            'hours_alone': 'How long will the dog be left alone and unsupervised?',
+            'walks': 'How many walks per day will the dog get?',
+            'sleeping_arrangements': 'Where will the dog sleep at night?'
         }
 
-        fields = ['cost', 'housing', 'living_arrangements', 'yard', 'dog_sizes']
+        fields = ['cost', 'housing', 'living_arrangements', 'yard', 'dog_sizes', 'hours_alone', 'walks', 'sleeping_arrangements']
 
 
 class LoginForm(forms.ModelForm):
