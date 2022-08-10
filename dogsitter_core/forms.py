@@ -4,9 +4,6 @@ from .models import Profile, Dog, GalleryImage, DogSitterProfile
 from datetime import date
 
 
-
-
-
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(max_length=100, widget=forms.PasswordInput)
     confirm_password = forms.CharField(max_length=100, widget=forms.PasswordInput)
@@ -24,6 +21,7 @@ class RegisterForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+
     class Meta:
         model = Profile
         labels = {
@@ -40,6 +38,7 @@ class DogSitterProfileForm(forms.ModelForm):
     yard = forms.CharField(label='Do you have a yard?',
                            widget=forms.RadioSelect(choices=BOOL_CHOICES))
 
+
     class Meta:
         model = DogSitterProfile
         labels = {
@@ -47,12 +46,14 @@ class DogSitterProfileForm(forms.ModelForm):
             'living_arrangements': 'Which option best describes your living situation?',
             'housing': 'Where do you live?',
             'dog_sizes': 'What size of dog will you accept into your home?',
-            'hours_alone': 'How long will the dog be left alone and unsupervised?',
-            'walks': 'How many walks per day will the dog get?',
+            'hours_alone': 'How long will the dog be left alone and unsupervised?:',
+            'walks': 'How many walks per day will the dog get? ',
             'sleeping_arrangements': 'Where will the dog sleep at night?'
+
         }
 
-        fields = ['cost', 'housing', 'living_arrangements', 'yard', 'dog_sizes', 'hours_alone', 'walks', 'sleeping_arrangements']
+        fields = ['cost', 'housing', 'living_arrangements', 'yard', 'dog_sizes',
+                  'hours_alone', 'walks', 'sleeping_arrangements']
 
 
 class LoginForm(forms.ModelForm):

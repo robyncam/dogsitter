@@ -121,7 +121,8 @@ def search_results(request):
         searched_location = request.POST['searched_location']
         searched_name = request.POST['searched_name']
         searched_cost = request.POST['searched_cost']
-        search_query = Q(profile__is_dog_sitter=True)
+        search_query = Q()
+        dog_sitters = User.objects.exclude(dogsitterprofile=None)
         if searched_name:
             search_query &= (Q(first_name__contains=searched_name) |
                              Q(last_name__contains=searched_name))
@@ -129,7 +130,7 @@ def search_results(request):
             search_query &= Q(profile__cost__lte=searched_cost)
         if searched_location:
             search_query &= Q(profile__location__contains=searched_location)
-        available_sitters = User.objects.filter(search_query)
+        available_sitters = dog_sitters.filter(search_query)
 
         context = {'available_sitters':  available_sitters}
         return render(request, 'search_results.html', context)
@@ -218,6 +219,7 @@ def create_dogsitter_profile(request):
 
     context = {'form': form}
     return render(request, 'create_dogsitter_profile.html', context)
+
 
 @login_required
 def edit_dogsitter_profile(request):

@@ -20,7 +20,8 @@ urlpatterns = [
     path('search-results', views.search_results, name='search_results'),
     path('search', views.search, name='search'),
     path('view-gallery/<int:profile_pk>', views.view_gallery, name='view_gallery'),
-    path('create-dogsitter-profile', views.create_dogsitter_profile, name='create_dogsitter_profile'),
+    path('create-dogsitter-profile', views.create_dogsitter_profile,
+         name='create_dogsitter_profile'),
     path('edit-dogsitter-profile', views.edit_dogsitter_profile, name='edit_dogsitter_profile'),
 
 ]
