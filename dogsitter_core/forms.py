@@ -38,7 +38,6 @@ class DogSitterProfileForm(forms.ModelForm):
     yard = forms.CharField(label='Do you have a yard?',
                            widget=forms.RadioSelect(choices=BOOL_CHOICES))
 
-
     class Meta:
         model = DogSitterProfile
         labels = {

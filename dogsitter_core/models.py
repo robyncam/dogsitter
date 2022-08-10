@@ -89,7 +89,8 @@ class DogSitterProfile(models.Model):
     ]
 
     user = models.OneToOneField(User, models.CASCADE)
-    living_arrangements = models.CharField(max_length=1000, choices=LIVING_ARRANGEMENTS, default="")
+    living_arrangements = models.CharField(max_length=1000,
+                                           choices=LIVING_ARRANGEMENTS, default="")
     housing = models.CharField(max_length=1000, choices=HOUSE_CHOICES, default="")
     yard = models.BooleanField(default=False)
     cost = models.DecimalField(decimal_places=2, max_digits=7)
