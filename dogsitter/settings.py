@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'dogsitter.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dogsitter',
+        'USER': 'dogsitter_user',
+        'PASSWORD': 'abcdef',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
