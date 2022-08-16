@@ -4,49 +4,10 @@
   Search
 {% endblock %}
 
-{% block extra_css %}
-
-h1 {
- text-align: center;
-}
-
-.profile_pic {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    overflow: hidden;
-    object-fit: cover;
-}
-
-.results {
-    display: flex;
-    width: 800px;
-    justify-content: space-around;
-    align-items: center;
-    margin: 50px auto 50px auto;
-    background: #cbf3f0;
-    padding: 60px 40px;
-    text-align: center;
-    border-radius: 20px;
-}
-
-#info {
-
-    margin: auto auto;
-}
-
-.footer {
-    display: flex;
-    justify-content: end;
-    margin-bottom: 40px;
-}
-
-{% endblock %}
-
-{%block content%}
+{%block content %}
 
     {% if available_sitters %}
-        <h1> Available DogSitters: </h1>
+        <h1> Available DogSitters </h1>
         {% for user in available_sitters %}
             <div class = "results">
                 <img class="profile_pic" src="{{ user.profile.image.url }}" alt="Profile Picture">
@@ -54,16 +15,16 @@ h1 {
                     <h1>{{user.first_name.capitalize}} {{user.last_name.capitalize}}</h1>
                     <p> Location: {{user.profile.location}}</p>
                     <p>Cost: $ {{user.profile.cost}} per day</p>
-                    <p>About Me: {{user.profile.bio}}</p>
+                    <p>About Me: {{user.profile.bio|truncatewords:30}}</p>
                 </div>
             </div>
         {% endfor %}
     {% else %}
-        <h1> It appears nothing matched your search </h1>
+        <h1 class="results"> It appears nothing matched your search... </h1>
     {% endif %}
 
 <div class="footer">
-    <a href="{% url 'search' %}"> <button class="btn btn-outline-primary"> Back to Search </button></a>
+    <a href="{% url 'search' %}"> <button class="top-buttons"> Back to Search </button></a>
 </div>
 
 

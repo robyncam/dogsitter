@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {%block title%}
-    Profile Pagehttp://127.0.0.1:8000/media/profile_pics/dogheader_Z73Aej0.jpg
+    Profile Page
 {% endblock %}
 
 {%block content_nocontainer %}
@@ -47,7 +47,7 @@
                 <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.0.image.url }}">
                 <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.1.image.url }}">
                 <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.2.image.url }}">
-                {% else %}
+                {% elif profile.pk != user.profile.pk %}
                     <p> User has not uploaded any pictures yet...! </p>
                 {% endif %}
                 {% if profile.pk == user.profile.pk %}
@@ -65,7 +65,7 @@
     <div class="dog-section">
         <div>
             <a href="{% url 'dog_profile' dog.pk %}">
-                <img class="dog-img" src="{{ user.profile.image.url }}">
+                <img class="dog-img" src="{{ dog.image.url }}">
             </a>
         </div>
         <div>

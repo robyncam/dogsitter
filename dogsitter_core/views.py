@@ -185,7 +185,7 @@ def add_dog_images(request, dog_pk):
             images = request.FILES.getlist('image')
             for image in images:
                 models.DogGalleryImage.objects.create(image=image, dog=dog)
-            return redirect('profile_page')
+            return redirect('dog_profile', dog.pk)
 
     context = {'form': form}
     return render(request, 'add_images.html', context)

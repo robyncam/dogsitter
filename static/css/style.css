@@ -140,6 +140,7 @@
 
     }
 
+
     .dog-pic {
         display: in-line;
         text-align: center;
@@ -175,7 +176,7 @@
         max-width: 1500px;
         margin: 35px auto 40px auto;
         border-radius: 20px;
-        background-color: #f9dcc4;
+        background-color: #f9e5d8;
         text-align: center;
         justify-content: center;
         align-items: center;
@@ -188,7 +189,7 @@
         max-width: 1500px;
         margin: 35px auto 40px auto;
         border-radius: 20px;
-        background-color: #f9dcc4;
+        background-color: #f9e5d8;
         justify-content: space-around;
         text-align: center;
         padding: 20px 20px;
@@ -265,4 +266,51 @@
 
     footer {
         height: 50px;
+    }
+
+
+    .dog-gallery-view {
+        width: 800px;
+        margin: 35px auto 40px auto;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .profile_pic {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    .results {
+        display: flex;
+        width: 800px;
+        justify-content: space-around;
+        align-items: center;
+        margin: 50px auto 50px auto;
+        background: #f9e5d8;
+        padding: 60px 40px;
+        text-align: center;
+        border-radius: 20px;
+
+    }
+
+    #info {
+        margin: auto auto;
+        width: 70%;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: end;
+        margin-bottom: 40px;
     }
