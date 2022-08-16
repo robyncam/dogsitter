@@ -167,7 +167,7 @@ def edit_dog(request, dog_pk):
         form = DogForm(request.POST, request.FILES, instance=dog)
         if form.is_valid():
             dog = form.save()
-            return redirect('profile_page')
+            return redirect('dog_profile', dog.pk)
 
     context = {'form': form}
     return render(request, 'edit_dog.html', context)
