@@ -203,23 +203,3 @@ def view_gallery(request, profile_pk):
     current_user = request.user
     context = {'profile': profile, "current_user": current_user}
     return render(request, 'view_gallery.html', context)
-
-
-def error_404(request, exception):
-    data = {}
-    return render(request, 'dogsitter/404.html', data)
-
-
-def error_500(request, exception):
-    data = {}
-    return render(request, 'dogsitter/500.html', data)
-
-
-def error_403(request, exception):
-    data = {}
-    return render(request, 'dogsitter/403.html', data)
-
-
-def error_400(request, exception):
-    data = {}
-    return render(request, 'dogsitter/400.html', data)
