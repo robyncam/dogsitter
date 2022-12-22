@@ -192,6 +192,7 @@ def add_dog_images(request, dog_pk):
     context = {'form': form}
     return render(request, 'add_images.html', context)
 
+
 @login_required()
 def view_dog_gallery(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
