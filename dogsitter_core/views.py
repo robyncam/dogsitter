@@ -192,7 +192,7 @@ def add_dog_images(request, dog_pk):
     context = {'form': form}
     return render(request, 'add_images.html', context)
 
-
+@login_required()
 def view_dog_gallery(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
     context = {'dog': dog}
@@ -207,6 +207,7 @@ def view_gallery(request, profile_pk):
     return render(request, 'view_gallery.html', context)
 
 
+@login_required
 def edit_info(request):
     current_user = request.user
     form = EditUserInfo(instance=current_user)
@@ -224,7 +225,7 @@ def edit_info(request):
 def change_password(request):
     form = PasswordChangeForm(request.user)
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+        form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)

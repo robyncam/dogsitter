@@ -22,9 +22,6 @@ urlpatterns = [
     path('view-gallery/<int:profile_pk>', views.view_gallery, name='view_gallery'),
     path('edit-info', views.edit_info, name='edit_info'),
     path('change-password', views.change_password, name='change_password')
-
-
-
 ]
 
 if settings.DEBUG:

@@ -10,7 +10,7 @@
     <form method="POST">
         {% csrf_token %}
         {{form|crispy}}
-        <input type="submit">
+        <button class="btn btn-outline-primary" type="submit">Update Now</button>
     </form>
 
 {% endblock %}
