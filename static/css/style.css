@@ -291,6 +291,17 @@
         object-fit: cover;
     }
 
+  /*  .profile_pic {
+        display: flex;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        overflow: hidden;
+        object-fit: cover;
+        margin-right: 40px;
+    }
+*/
+
     .results {
         display: flex;
         width: 800px;
@@ -313,4 +324,13 @@
         display: flex;
         justify-content: end;
         margin-bottom: 40px;
+    }
+
+    .view-profile-button {
+        color: black;
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid black;
+        padding: 5px 10px;
+        margin: 20px auto 20px auto;
     }

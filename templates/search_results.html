@@ -4,8 +4,7 @@
   Search
 {% endblock %}
 
-{%block content %}
-
+{%block content%}
     {% if available_sitters %}
         <h1> Available DogSitters </h1>
         {% for user in available_sitters %}
@@ -14,8 +13,11 @@
                 <div id="info">
                     <h1>{{user.first_name.capitalize}} {{user.last_name.capitalize}}</h1>
                     <p> Location: {{user.profile.location}}</p>
-                    <p>Cost: $ {{user.profile.cost}} per day</p>
-                    <p>About Me: {{user.profile.bio|truncatewords:30}}</p>
+                    <p>Cost: $ {{user.dogsitterprofile.cost}} per day</p>
+                    <p>About Me: {{user.profile.bio}}</p>
+                    <a href="{% url 'profile_page' user.profile.pk %}">
+                        <button class="view-profile-button"> View Profile </button>
+                    </a>
                 </div>
             </div>
         {% endfor %}
@@ -24,8 +26,9 @@
     {% endif %}
 
 <div class="footer">
-    <a href="{% url 'search' %}"> <button class="top-buttons"> Back to Search </button></a>
+    <a href="{% url 'search' %}">
+        <button class="btn btn-outline-primary"> Back to Search </button>
+    </a>
 </div>
-
 
 {% endblock %}

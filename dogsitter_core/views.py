@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from .forms import (RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm,
-                    DogGalleryImageForm)
+                    DogGalleryImageForm, DogSitterProfileForm, EditUserInfo)
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from . import models
@@ -121,7 +123,8 @@ def search_results(request):
         searched_location = request.POST['searched_location']
         searched_name = request.POST['searched_name']
         searched_cost = request.POST['searched_cost']
-        search_query = Q(profile__is_dog_sitter=True)
+        search_query = Q()
+        dog_sitters = User.objects.exclude(dogsitterprofile=None)
         if searched_name:
             search_query &= (Q(first_name__contains=searched_name) |
                              Q(last_name__contains=searched_name))
@@ -129,7 +132,7 @@ def search_results(request):
             search_query &= Q(profile__cost__lte=searched_cost)
         if searched_location:
             search_query &= Q(profile__location__contains=searched_location)
-        available_sitters = User.objects.filter(search_query)
+        available_sitters = dog_sitters.filter(search_query)
 
         context = {'available_sitters':  available_sitters}
         return render(request, 'search_results.html', context)
@@ -191,6 +194,7 @@ def add_dog_images(request, dog_pk):
     return render(request, 'add_images.html', context)
 
 
+@login_required()
 def view_dog_gallery(request, dog_pk):
     dog = get_object_or_404(models.Dog, pk=dog_pk)
     context = {'dog': dog}
@@ -203,3 +207,64 @@ def view_gallery(request, profile_pk):
     current_user = request.user
     context = {'profile': profile, "current_user": current_user}
     return render(request, 'view_gallery.html', context)
+
+
+@login_required
+def create_dogsitter_profile(request):
+    form = DogSitterProfileForm()
+    if request.method == "POST":
+        form = DogSitterProfileForm(request.POST)
+        if form.is_valid():
+            dogsitterprofile = form.save(commit=False)
+            dogsitterprofile.user = request.user
+            dogsitterprofile.save()
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'create_dogsitter_profile.html', context)
+
+
+@login_required
+def edit_dogsitter_profile(request):
+    current_user = request.user
+    dogsitterprofile = models.DogSitterProfile.objects.get(user_id=current_user.id)
+    if current_user != dogsitterprofile.user:
+        raise PermissionDenied
+    form = DogSitterProfileForm(instance=dogsitterprofile)
+    if request.method == "POST":
+        form = DogSitterProfileForm(request.POST, instance=dogsitterprofile)
+        if form.is_valid():
+            dogsitterprofile = form.save(commit=False)
+            dogsitterprofile.save()
+            return redirect('profile_page', current_user.profile.pk)
+
+    context = {'form': form, 'profile': profile}
+    return render(request, 'edit_profile.html', context)
+
+
+@login_required
+def edit_info(request):
+    current_user = request.user
+    form = EditUserInfo(instance=current_user)
+    if request.method == "POST":
+        form = EditUserInfo(request.POST, instance=current_user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, "edit_info.html", context)
+
+
+@login_required
+def change_password(request):
+    form = PasswordChangeForm(request.user)
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'change_password.html', context)
