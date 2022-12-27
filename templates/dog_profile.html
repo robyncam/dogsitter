@@ -19,7 +19,7 @@
 {% block content %}
 
 <img class="profile_pic" src="{{ dog.image.url }}">
-<h4>Hi my name is {{dog.name}}</h4>
+<h4>Hi my name is {{dog.name.capitalize}}</h4>
 <h4> Weight: {{dog.weight}} pounds</h4>
 
 {% if dog.good_with_cats %}
@@ -42,7 +42,7 @@
 
 <h3> Age: {{dog.age}} old </h3>
 
-<h2> Breed: {{dog.breed}} </h2>
+<h2> Breed: {{dog.breed.capitalize}} </h2>
 
  <p> Add photos to your photo gallery <a href="{% url 'add_dog_images' dog.pk %}">here</a></p>
 
