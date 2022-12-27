@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    DogSitter Profile
+{% endblock %}
+
+
+
+{% block content %}
+    <h1> Create Your DogSitting Profile</h1>
+    <form method = "POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit">
+    </form>
+{% endblock %}

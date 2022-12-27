@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dogsitter_core',
-    'crispy_forms'
+    'crispy_forms',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
