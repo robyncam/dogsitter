@@ -4,11 +4,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from .forms import (RegisterForm, ProfileForm, LoginForm, DogForm, GalleryImageForm,
-<<<<<<< HEAD
-                    DogGalleryImageForm, DogSitterProfileForm)
-=======
-                    DogGalleryImageForm, EditUserInfo)
->>>>>>> master
+                    DogGalleryImageForm, DogSitterProfileForm, EditUserInfo)
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from . import models
