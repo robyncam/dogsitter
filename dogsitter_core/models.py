@@ -16,11 +16,11 @@ class Profile(models.Model):
 
 
 class DogSitterProfile(models.Model):
-    ALONE = 'I live alone'
-    WITH_SPOUSE = 'I live with my spouse/partner'
-    WITH_ROOMMATES = 'I live with roommates'
-    WITH_SPOUSE_CHILDREN = 'I live with my spouse and children'
-    WITH_CHILDREN = 'I live with children'
+    ALONE = 'alone'
+    WITH_SPOUSE = 'with_spouse'
+    WITH_ROOMMATES = 'with_roommates'
+    WITH_SPOUSE_CHILDREN = 'with_spouse_and_children'
+    WITH_CHILDREN = 'with_children'
 
     LIVING_ARRANGEMENTS = [
         (ALONE, 'I live alone'),
@@ -30,10 +30,10 @@ class DogSitterProfile(models.Model):
         (WITH_CHILDREN, 'I live with children')
     ]
 
-    HOUSE = 'I live in a house'
-    APARTMENT = 'I live in an apartment'
-    CONDO = 'I live in a condo'
-    ALTERNATIVE = 'I live in an alternative style of housing'
+    HOUSE = 'house'
+    APARTMENT = 'apartment'
+    CONDO = 'condo'
+    ALTERNATIVE = 'alternative'
 
     HOUSE_CHOICES = [
         (HOUSE, 'I live in a house'),
@@ -42,10 +42,10 @@ class DogSitterProfile(models.Model):
         (ALTERNATIVE, 'I live in an alternative style of housing'),
     ]
 
-    SMALL = "Small Dogs (up to 22lbs)"
-    MEDIUM = "Medium Dogs (23lbs to 55lbs)"
-    LARGE = "Large Dogs (up to 100lbs)"
-    EXTRA_LARGE = "Extra Large Dogs (over 100lbs)"
+    SMALL = "small"
+    MEDIUM = "medium"
+    LARGE = "large"
+    EXTRA_LARGE = "extra_large"
 
     DOG_SIZES = [
         (SMALL, "Small Dogs (up to 22lbs)"),
@@ -54,10 +54,10 @@ class DogSitterProfile(models.Model):
         (EXTRA_LARGE, "Extra Large Dogs (over 100lbs)"),
     ]
 
-    ZERO_ = 'your dog will not be left alone'
-    UP_TO_TWO = 'up to two hours'
-    UP_TO_FOUR = 'up to four hours'
-    UP_TO_EIGHT = 'up to eight hours'
+    ZERO_ = 'zero'
+    UP_TO_TWO = 'two_hours'
+    UP_TO_FOUR = 'four_hours'
+    UP_TO_EIGHT = 'eight_hours'
 
     HOURS_CHOICES = [
         (ZERO_, 'Your dog will not be left alone'),
@@ -77,9 +77,9 @@ class DogSitterProfile(models.Model):
     ]
 
     DOGBED = 'dogbed'
-    BED = 'on the bed'
-    COUCH = 'on the couch'
-    ANYWHERE = 'wherever they would like'
+    BED = 'bed'
+    COUCH = 'couch'
+    ANYWHERE = 'anywhere'
 
     SLEEPING_CHOICES = [
         (DOGBED, 'On a dogbed'),

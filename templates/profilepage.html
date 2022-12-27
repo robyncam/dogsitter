@@ -70,11 +70,11 @@
 
 {% if user.dogsitterprofile %}
 <h1> I charge: {{user.dogsitterprofile.cost}} per day </h1>
-<h1> {{user.dogsitterprofile.housing}}</h1>
-<h1> {{user.dogsitterprofile.living_arrangements}}</h1>
-<h1> Your dog will be left alone for: {{user.dogsitterprofile.hours_alone}}</h1>
-<h1> Your dog will get {{user.dogsitterprofile.walks}} walks per day </h1>
-<h1> Your dog will sleep {{user.dogsitterprofile.sleeping_arrangements}} at night </h1>
+<h1> {{user.dogsitterprofile.get_housing_display}}</h1>
+<h1> {{user.dogsitterprofile.get_living_arrangements_display}}</h1>
+<h1> Your dog will be left alone for: {{user.dogsitterprofile.get_hours_alone_display}}</h1>
+<h1> Your dog will get {{user.dogsitterprofile.get_walks_display}} walks per day </h1>
+<h1> Your dog will sleep {{user.dogsitterprofile.get_sleeping_arrangements_display}} at night </h1>
 {% endif %}
 
 {% if user.dogsitterprofile.yard %}
@@ -92,9 +92,7 @@
 
 {% if user.dogsitterprofile %}
 <h2> Accepted Dog Sizes into home: </h2>
-{% for size in user.dogsitterprofile.dog_sizes %}
-<ul>{{size}}</ul>
-{% endfor %}
+{{user.dogsitterprofile.get_dog_sizes_display}}
 {% endif %}
 {% endblock %}
 

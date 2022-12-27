@@ -233,7 +233,7 @@ def edit_dogsitter_profile(request):
         if form.is_valid():
             dogsitterprofile = form.save(commit=False)
             dogsitterprofile.save()
-            return redirect('profile_page', current_user.pk)
+            return redirect('profile_page', current_user.profile.pk)
 
     context = {'form': form, 'profile': profile}
     return render(request, 'edit_profile.html', context)
