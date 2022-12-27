@@ -101,16 +101,6 @@ class DogSitterProfile(models.Model):
 
 
 class Dog(models.Model):
-    BOXER = 'boxer'
-    GOLDEN = 'golden'
-    BULLDOG = 'bulldog'
-
-    BREED_CHOICES = [
-        (BOXER, 'Boxer'),
-        (GOLDEN, 'Golden'),
-        (BULLDOG, 'Bulldog'),
-    ]
-
     user = models.ForeignKey(User, models.CASCADE)
     name = models.CharField(max_length=200)
     weight = models.IntegerField()
@@ -119,7 +109,7 @@ class Dog(models.Model):
     good_with_dogs = models.BooleanField(default=False)
     bio = models.TextField(max_length=100000)
     dob = models.DateField()
-    breed = models.CharField(max_length=100, choices=BREED_CHOICES, default="")
+    breed = models.CharField(max_length=1000)
     image = models.ImageField(default='DogProfile.png', upload_to='dog_pics')
 
     def __str__(self):

@@ -45,6 +45,7 @@
     {% else %}
         <p>I do not have a dog</p>
     {% endif %}
+    <h3> Add a dog <a href="{% url 'add_dog' %}">here</a> </h3>
 </div>
 
 {%for dog in profile.user.dog_set.all %}
@@ -67,7 +68,6 @@
     <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
 {% endif %}
 
-
 {% if user.dogsitterprofile %}
 <h1> I charge: {{user.dogsitterprofile.cost}} per day </h1>
 <h1> {{user.dogsitterprofile.get_housing_display}}</h1>
@@ -89,10 +89,14 @@
 <h2> Become a dogsitter - Update your <a href="{% url 'create_dogsitter_profile' %}"> DogSitting Profile </a></h2>
 {% endif %}
 
-
 {% if user.dogsitterprofile %}
 <h2> Accepted Dog Sizes into home: </h2>
 {{user.dogsitterprofile.get_dog_sizes_display}}
 {% endif %}
+
+<p> Update User information <a href="{% url 'edit_info' %}">here</a> </p>
+
+<p>Need to Change your password? </p> <a href="{% url 'change_password' %}">here</a> </p>
+
 {% endblock %}
 
