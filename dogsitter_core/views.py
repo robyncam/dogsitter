@@ -212,13 +212,14 @@ def view_gallery(request, profile_pk):
 @login_required
 def create_dogsitter_profile(request):
     form = DogSitterProfileForm()
+    current_user = request.user
     if request.method == "POST":
         form = DogSitterProfileForm(request.POST)
         if form.is_valid():
             dogsitterprofile = form.save(commit=False)
             dogsitterprofile.user = request.user
             dogsitterprofile.save()
-            return redirect('home')
+            return redirect('profile_page', current_user.profile.pk)
 
     context = {'form': form}
     return render(request, 'create_dogsitter_profile.html', context)
