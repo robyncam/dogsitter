@@ -12,7 +12,9 @@
 <div class="dog-profile">
     <div>
         <h4>Hi my name is {{dog.name}}!</h4>
+               <a href="{% url 'view_dog_gallery' dog.pk %}">
         <img class="dog-pic" src="{{ dog.image.url }}" alt="Profile Picture">
+               </a>
         {% if dog.user == request.user %}
             <p> Add photos to {{dog.name}}'s gallery <a href="{% url 'add_dog_images' dog.pk %}">here</a></p>
             <button class="top-buttons"> <a href="{% url 'edit_dog' dog.pk %}"> Edit Profile</button></a>
@@ -42,18 +44,6 @@
 </div>
 </div>
 
-{% if dog.doggalleryimage_set.exists %}
-<div class="dog-gallery-view">
-    <p> View more pictures: </p>
-    <div>
-        <a href="{% url 'view_dog_gallery' dog.pk %}">
-            <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ dog.doggalleryimage_set.all.0.image.url }}">
-            <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ dog.doggalleryimage_set.all.1.image.url }}">
-            <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ dog.doggalleryimage_set.all.2.image.url }}">
-        </a>
-    {% endif %}
-    </div>
-</div>
 
 
 {% endblock %}
