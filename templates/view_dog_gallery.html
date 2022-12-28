@@ -11,16 +11,18 @@
 {% block content %}
 
 {% if dog.doggalleryimage_set.exists %}
+<div class="container">
+    <div class="row">
     {% for doggalleryimage in dog.doggalleryimage_set.all %}
-        <div class="col-lg gallery-images">
-            <div class="text-center mt-2">
-                <img src="{{ doggalleryimage.image.url }}" class="img-thumbnail" alt="...">
-            </div>
-        </div>
+        <div class="col-md-4">
+            <img src="{{ doggalleryimage.image.url }}" class="img-responsive img-thumbnail" width="350" height="350" alt="...">
+       </div>
     {% endfor %}
 {% else %}
 <p>No more pictures yet....</p>
 {% endif %}
+    </div>
+</div>
 
 <div class="footer">
     <a href="{% url 'dog_profile' dog.pk %}">

@@ -16,7 +16,7 @@
         <img class="dog-pic" src="{{ dog.image.url }}" alt="Profile Picture">
                </a>
         {% if dog.user == request.user %}
-            <p> Add photos to {{dog.name}}'s gallery <a href="{% url 'add_dog_images' dog.pk %}">here</a></p>
+            <a href="{% url 'add_dog_images' dog.pk %}"><p> Add photos to {{dog.name}}'s gallery here</a></p>
             <button class="top-buttons"> <a href="{% url 'edit_dog' dog.pk %}"> Edit Profile</button></a>
         {% endif %}
     </div>

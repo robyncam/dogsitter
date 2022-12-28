@@ -44,10 +44,14 @@
             <p> I charge: {{user.dogsitterprofile.cost}} per day </p>
             <p> {{user.dogsitterprofile.get_housing_display}}</p>
             <p> {{user.dogsitterprofile.get_living_arrangements_display}}</h1>
-            <p> Your dog will be left alone for: {{user.dogsitterprofile.get_hours_alone_display.lower}}</p>
-            <p> Your dog will get: {{user.dogsitterprofile.get_walks_display}} walks per day </p>
+            <p> Your dog will be left alone for: {{user.dogsitterprofile.get_hours_alone_display}}</p>
+            {% if user.dogsitterprofile.walks == 'one' %}
+                <p> Your dog will get: {{user.dogsitterprofile.get_walks_display}} walk per day </p>
+            {% else %}
+                <p> Your dog will get: {{user.dogsitterprofile.get_walks_display}} walks per day </p>
+            {% endif %}
             <p> Your dog will sleep: {{user.dogsitterprofile.get_sleeping_arrangements_display}} at night </p>
-            <p> Accepted Dog Sizes into home: {{user.dogsitterprofile.get_dog_sizes_display}} </p>
+            <p> Accepted Dog Sizes: {{user.dogsitterprofile.get_dog_sizes_display}} </p>
         </div>
     </div>
 {% endif %}
