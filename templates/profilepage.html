@@ -4,7 +4,7 @@
     Profile Page
 {% endblock %}
 
-{%block content_nocontainer %}
+{% block content_nocontainer %}
 
 {% if profile.pk == user.profile.pk %}
 {%for dog in profile.user.dog_set.all %}
@@ -17,99 +17,63 @@
 
 <div class="profile-page">
     <div>
-        <img class="profile-pic" src="{{ profile.image.url }}" alt="Profile Picture">
+        <a href="{% url 'view_gallery' profile.pk %}">
+            <img class="profile-pic" src="{{ profile.image.url }}" alt="Profile Picture">
+        </a>
+        {% if profile.pk == user.profile.pk %}
+           <a href="{% url 'add_images' %}"><p> Add photos to your photo gallery</a></p>
+        {% endif %}
+
     </div>
     <div>
         <div class="profile-info">
             <h1 class="name">{{profile.user.first_name}} {{profile.user.last_name}}</h1>
             <p> Location: {{profile.location}} </p>
-            <p>Rate: {{profile.cost}} per day</p>
-            {% if user.profile.is_dog_sitter %}
-                <p> I am a dog sitter!</p>
-            {% endif %}
-            <p>I am looking for a dog sitter</p>
             <h4> Get to know me: </h4>
             <p>{{user.profile.bio}}</p>
+            {% if profile.pk == user.profile.pk %}
+            <button class="top-buttons"><a href="{% url 'edit_profile' %}">Update Profile Page</a></button>
+            {% endif %}
         </div>
     </div>
 </div>
 
 <div class="profile-additional">
     <div class="living-info">
-        <p> I have a yard </p>
-        <p> I live in an apartment</p>
-        <p> I live alone </p>
+    {% if user.dogsitterprofile %}
+        <p> I charge: {{user.dogsitterprofile.cost}} per day </p>
+        <p> {{user.dogsitterprofile.get_housing_display}}</p>
+        <p> {{user.dogsitterprofile.get_living_arrangements_display}}</h1>
+        <p> Your dog will be left alone for: {{user.dogsitterprofile.get_hours_alone_display.lower}}</p>
+        <p> Your dog will get: {{user.dogsitterprofile.get_walks_display}} walks per day </p>
+        <p> Your dog will sleep: {{user.dogsitterprofile.get_sleeping_arrangements_display}} at night </p>
+        <p> Accepted Dog Sizes into home: {{user.dogsitterprofile.get_dog_sizes_display}} </p>
+     {% endif %}
+
     </div>
     <div>
-        <div class="profile-gallery">
-            {% if profile.user.galleryimage_set.exists %}
-            <a href="{% url 'view_gallery' profile.pk %}">
-                <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.0.image.url }}">
-                <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.1.image.url }}">
-                <img class="img-thumbnail gallery-image" alt="View Gallery" src= "{{ profile.user.galleryimage_set.all.2.image.url }}">
-                {% elif profile.pk != user.profile.pk %}
-                    <p> User has not uploaded any pictures yet...! </p>
-                {% endif %}
-                {% if profile.pk == user.profile.pk %}
-                    <p> Add photos to your photo gallery <a href="{% url 'add_images' %}">here</a></p>
-                {% endif %}
-            </a>
-        </div>
     </div>
 </div>
 
 
 {% if profile.user.dog_set.exists %}
-    <h1 class="dog-list">My Dogs</h1>
-{% for dog in profile.user.dog_set.all %}
-    <div class="dog-section">
-        <div>
-            <a href="{% url 'dog_profile' dog.pk %}">
-                <img class="dog-img" src="{{ dog.image.url }}">
-            </a>
+        <h1 class="dog-list">My Dogs</h1>
+    {% for dog in profile.user.dog_set.all %}
+        <div class="dog-section">
+            <div>
+                <a href="{% url 'dog_profile' dog.pk %}">
+                    <img class="dog-img" src="{{ dog.image.url }}">
+                </a>
+            </div>
+            <div>
+                <h4 class="dog-info dog-name"><a href="{% url 'dog_profile' dog.pk %}"> {{dog}} </a></h4>
+                <p class="dog-info"> Breed: {{dog.breed}} </p>
+                <p class="dog-info"> {{dog.age}} old </p>
+                <p class="dog-info">About Me: {{dog.bio|truncatewords:10}} </p>
+            </div>
         </div>
-        <div>
-            <h4 class="dog-info dog-name"><a href="{% url 'dog_profile' dog.pk %}"> {{dog}} </a></h4>
-            <p class="dog-info"> Breed: {{dog.breed}} </p>
-            <p class="dog-info"> {{dog.age}} old </p>
-            <p class="dog-info">About Me: {{dog.bio|truncatewords:10}} </p>
-        </div>
-    </div>
-{% endfor %}
+    {% endfor %}
 {% endif %}
-
-{% if user.dogsitterprofile %}
-<h1> I charge: {{user.dogsitterprofile.cost}} per day </h1>
-<h1> {{user.dogsitterprofile.get_housing_display}}</h1>
-<h1> {{user.dogsitterprofile.get_living_arrangements_display}}</h1>
-<h1> Your dog will be left alone for: {{user.dogsitterprofile.get_hours_alone_display}}</h1>
-<h1> Your dog will get {{user.dogsitterprofile.get_walks_display}} walks per day </h1>
-<h1> Your dog will sleep {{user.dogsitterprofile.get_sleeping_arrangements_display}} at night </h1>
-{% endif %}
-
-{% if user.dogsitterprofile.yard %}
-<h1> I have a yard </h1>
-{% else %}
-<h1> I do not have a yard </h1>
-{% endif %}
-
-{% if user.dogsitterprofile %}
-<h2> Update Dogsitting Information <a href="{% url 'edit_dogsitter_profile' %}">here</a></h2>
-{% else %}
-<h2> Become a dogsitter - Update your <a href="{% url 'create_dogsitter_profile' %}"> DogSitting Profile </a></h2>
-{% endif %}
-
-{% if user.dogsitterprofile %}
-<h2> Accepted Dog Sizes into home: </h2>
-{{user.dogsitterprofile.get_dog_sizes_display}}
-{% endif %}
-
-<h3> Add a dog <a href="{% url 'add_dog' %}">here</a> </h3>
-
-
-<p> Update User information <a href="{% url 'edit_info' %}">here</a> </p>
-
-<p>Need to Change your password? </p> <a href="{% url 'change_password' %}">here</a> </p>
 
 
 {% endblock %}

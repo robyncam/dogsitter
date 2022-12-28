@@ -33,14 +33,14 @@
                     <img class="nav_profile_pic" src="{{ user.profile.image.url}}" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="{% url 'profile_page' user.profile.pk %}">Profile Page</a></li>
-                        {% if user.dog_set.exists %}
-                            <li><a class="dropdown-item" href='#'>Your Dogs</a></li>
                             <li><a class="dropdown-item" href="{% url 'add_dog' %}">Add your Dogs</a></li>
+                        {% if user.dogsitterprofile %}
+                        <li><a class="dropdown-item" href="{% url 'edit_dogsitter_profile' %}">Update Dogsitting Information </a></li>
                         {% else %}
-                            <li><a class="dropdown-item" href="{% url 'add_dog' %}">Add your Dogs</a></li>
+                        <li><a class="dropdown-item" href="{% url 'create_dogsitter_profile' %}">Become a Dogsitter</a></li
                         {% endif %}
-                        <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Update Profile Page</a></li>
-                     </ul>
+                        <li><a class="dropdown-item" href="{% url 'edit_info' %}">Update username</a></li>
+                        <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
                     </div>
                 {% endif %}
             </div>

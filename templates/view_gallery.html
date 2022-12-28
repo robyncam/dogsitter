@@ -10,12 +10,23 @@
 
 {% block content %}
 
-{% for galleryimage in profile.user.galleryimage_set.all %}
-    <div class="col-lg gallery-images">
-        <div class="text-center mt-2">
-            <img src="{{ galleryimage.image.url }}" class="img-thumbnail" alt="...">
+{% if profile.user.galleryimage_set.exists %}
+    {% for galleryimage in profile.user.galleryimage_set.all %}
+        <div class="col-lg gallery-images">
+            <div class="text-center mt-2">
+                <img src="{{ galleryimage.image.url }}" class="img-thumbnail" alt="...">
+            </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
+{% else %}
+    <h1>This user has not uploaded any pictures </h1>
+{% endif %}
+
+<div class="footer">
+    <a href="{% url 'profile_page' user.profile.pk %}">
+        <button class="top-buttons"> Back to Profile </button>
+    </a>
+</div>
+
 
 {% endblock %}
