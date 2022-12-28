@@ -126,12 +126,12 @@ def search_results(request):
         search_query = Q()
         dog_sitters = User.objects.exclude(dogsitterprofile=None)
         if searched_name:
-            search_query &= (Q(first_name__contains=searched_name) |
-                             Q(last_name__contains=searched_name))
+            search_query &= (Q(first_name__icontains=searched_name) |
+                             Q(last_name__icontains=searched_name))
         if searched_cost:
             search_query &= Q(profile__cost__lte=searched_cost)
         if searched_location:
-            search_query &= Q(profile__location__contains=searched_location)
+            search_query &= Q(profile__location__icontains=searched_location)
         available_sitters = dog_sitters.filter(search_query)
 
         context = {'available_sitters':  available_sitters}
