@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dogsitter_core',
     'crispy_forms',
-    'bootstrap5',
     'multiselectfield',
 ]
 

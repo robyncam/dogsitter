@@ -1,325 +1,325 @@
 
-    a {
-        text-decoration: none;
-        color: black;
-     }
+a {
+    text-decoration: none;
+    color: black;
+ }
 
-     a:hover {
-        color: pink;
-     }
+ a:hover {
+    color: pink;
+ }
 
-    .main-header {
-        background: #81b29a;
-        height: 100px;
-        color: white;
-        font-family: 'Cantarell', sans-serif;
-    }
+.main-header {
+    background: #81b29a;
+    height: 100px;
+    color: white;
+    font-family: 'Cantarell', sans-serif;
+}
 
-    .header-title {
-        font-family: 'Shrikhand', cursive;
-        color: white;
+.header-title {
+    font-family: 'Shrikhand', cursive;
+    color: white;
 
-    }
+}
 
-    body {
-        font-family: 'Cantarell', sans-serif;
-        background-color: #eaf4f4;
-    }
+body {
+    font-family: 'Cantarell', sans-serif;
+    background-color: #eaf4f4;
+}
 
-    .nav-container {
-        max-width: 100%;
-        padding: 20px;
-        margin: 0 auto;
-        justify-content: space-around;
-        display: flex;
-    }
+.nav-container {
+    max-width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    justify-content: space-around;
+    display: flex;
+}
 
-    .main-nav {
-        padding: 20px;
-        margin: 0 20px 0 auto;
-        justify-content: end;
-        display: flex;
-    }
+.main-nav {
+    padding: 20px;
+    margin: 0 20px 0 auto;
+    justify-content: end;
+    display: flex;
+}
 
-    .top-buttons {
-        background-color: #f8f9fa;
-        color: black;
-        padding: 8px 16px;
-        border-radius: 18px;
-        border: 1.5px solid black;
-        height: 40px;
-        margin: 10px;
-        text-decoration: none;
-        text-align: center;
-    }
+.top-buttons {
+    background-color: #f8f9fa;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 18px;
+    border: 1.5px solid black;
+    height: 40px;
+    margin: 10px;
+    text-decoration: none;
+    text-align: center;
+}
 
-    .message {
-        color:red;
-    }
+.message {
+    color:red;
+}
 
-    .nav_profile_pic {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        overflow: hidden;
-        object-fit: cover;
-        position: relative;
-        float: left;
-        top: -5px;
-        left: -5px;
-        margin-left: 20px;
-        border: 2px solid white;
-    }
+.nav_profile_pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    position: relative;
+    float: left;
+    top: -5px;
+    left: -5px;
+    margin-left: 20px;
+    border: 2px solid white;
+}
 
-    .hero-image {
-        height: 100vh;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        margin: 0px;
-        display: flex;
-        flex-direction: column;
+.hero-image {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
 
-    }
+}
 
-    .hero-text {
-        text-align: center;
-        color: white;
-        font-style: bolder;
-    }
+.hero-text {
+    text-align: center;
+    color: white;
+    font-style: bolder;
+}
 
-    #title {
-        font-size: 30px;
-        margin-top: 40px;
-    }
+#title {
+    font-size: 30px;
+    margin-top: 40px;
+}
 
-    #tagline {
-        font-size: 20px;
-    }
+#tagline {
+    font-size: 20px;
+}
 
-    .search-button {
-        background: #43aa8b;
-        border: 2px solid black;
-        border-radius: 10px;
-        padding: 5px 10px;
-        font-size: 20px;
+.search-button {
+    background: #43aa8b;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 20px;
 
-    }
+}
 
-    .a-search-button {
-        color: black;
-    }
+.a-search-button {
+    color: black;
+}
 
-    .gallery-images {
-        margin-top: 15px;
-    }
-
-
-     .icon {
-        width: 35px;
-        height: 35px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        flex-direction: column;
-        border: none;
-    }
+.gallery-images {
+    margin-top: 15px;
+}
 
 
-    .dog-profile {
-        width: 800px;
-        margin: 35px auto 40px auto;
-        border: 1px solid black;
-        border-radius: 20px;
-        background-color: #f8f9fa;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 20px;
-        display: flex;
-
-    }
+ .icon {
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    border: none;
+}
 
 
-    .dog-pic {
-        display: in-line;
-        text-align: center;
-        width:400px;
-        height:400px;
-        overflow: hidden;
-        object-fit: cover;
-        border-radius: 25px;
-        margin: 20px 20px;
+.dog-profile {
+    width: 800px;
+    margin: 35px auto 40px auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    display: flex;
 
-    }
-
-    .dog-info {
-        padding: 40px 40px;
-    }
-
-    .profile-pic {
-        margin-top: 20px;
-        display: in-line;
-        text-align: center;
-        width:400px;
-        height:400px;
-        overflow: hidden;
-        object-fit: cover;
-        border-radius: 25px;
-        border: 3px solid white;
-        margin-bottom: 40px;
-
-    }
+}
 
 
-    .profile-page {
-        max-width: 1500px;
-        margin: 35px auto 40px auto;
-        border-radius: 20px;
-        background-color: #f9e5d8;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 20px;
-        display: flex;
+.dog-pic {
+    display: in-line;
+    text-align: center;
+    width:400px;
+    height:400px;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 25px;
+    margin: 20px 20px;
 
-    }
+}
 
-    .profile-additional {
-        max-width: 1500px;
-        margin: 35px auto 40px auto;
-        border-radius: 20px;
-        background-color: #f9e5d8;
-        justify-content: space-around;
-        text-align: center;
-        padding: 20px 20px;
-        display: flex;
+.dog-info {
+    padding: 40px 40px;
+}
 
-    }
+.profile-pic {
+    margin-top: 20px;
+    display: in-line;
+    text-align: center;
+    width:400px;
+    height:400px;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 25px;
+    border: 3px solid white;
+    margin-bottom: 40px;
 
-    .living-info {
-        align-items: center;
-
-    }
-
-    .profile-info {
-        
-        width: 900px;
-        display: block;
-        margin-top: 0px;
-        margin-left: 20px;
-        padding: 20px 40px;
-
-    }
-
-    .profile-gallery {
-        display: block;
-        width: 800px;
-        padding: 20px 20px;
-
-    }
-
-     .gallery-image {
-        margin-top: 20px;
-        width: 250px;
-        height: 250px;
-        overflow: hidden;
-        object-fit: cover;
-    }
-
-    .dog-list {
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    .dog-img {
-        width: 200px;
-        border-radius: 20px;
-        overflow: hidden;
-        object-fit: cover;
-    }
+}
 
 
-    .dog-section {
-        display: flex;
-        margin: 40px auto 40px  auto;
-        width: 900px;
-        background-color: white;
-        padding: 20px 40px;
-        border-radius: 20px;
-    }
+.profile-page {
+    max-width: 1500px;
+    margin: 35px auto 40px auto;
+    border-radius: 20px;
+    background-color: #f9e5d8;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    display: flex;
 
-    .dog-info {
-        padding: 0px 20px;
+}
 
-    }
+.profile-additional {
+    max-width: 1500px;
+    margin: 35px auto 40px auto;
+    border-radius: 20px;
+    background-color: #f9e5d8;
+    justify-content: space-around;
+    text-align: center;
+    padding: 20px 20px;
+    display: flex;
 
-    .dog-name {
-        font-size: 30px;
-    }
+}
 
-    .birthday-msg {
-        margin-top: 20px;
-        text-align: center;
-        font-style: bold;
-    }
+.living-info {
+    align-items: center;
 
-    footer {
-        height: 50px;
-    }
+}
+
+.profile-info {
+
+    width: 900px;
+    display: block;
+    margin-top: 0px;
+    margin-left: 20px;
+    padding: 20px 40px;
+
+}
+
+.profile-gallery {
+    display: block;
+    width: 800px;
+    padding: 20px 20px;
+
+}
+
+ .gallery-image {
+    margin-top: 20px;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.dog-list {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.dog-img {
+    width: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    object-fit: cover;
+}
 
 
-    .dog-gallery-view {
-        width: 800px;
-        margin: 35px auto 40px auto;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 20px;
-    }
+.dog-section {
+    display: flex;
+    margin: 40px auto 40px  auto;
+    width: 900px;
+    background-color: white;
+    padding: 20px 40px;
+    border-radius: 20px;
+}
 
-    h1 {
-        text-align: center;
-        margin-top: 20px;
-    }
+.dog-info {
+    padding: 0px 20px;
 
-    .profile_pic {
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-        overflow: hidden;
-        object-fit: cover;
-    }
+}
 
-    .results {
-        display: flex;
-        width: 800px;
-        justify-content: space-around;
-        align-items: center;
-        margin: 50px auto 50px auto;
-        background: #f9e5d8;
-        padding: 60px 40px;
-        text-align: center;
-        border-radius: 20px;
+.dog-name {
+    font-size: 30px;
+}
 
-    }
+.birthday-msg {
+    margin-top: 20px;
+    text-align: center;
+    font-style: bold;
+}
 
-    #info {
-        margin: auto auto;
-        width: 70%;
-    }
+footer {
+    height: 50px;
+}
 
-    .footer {
-        display: flex;
-        justify-content: end;
-        margin-bottom: 40px;
-    }
 
-    .view-profile-button {
-        color: black;
-        background-color: white;
-        border-radius: 10px;
-        border: 1px solid black;
-        padding: 5px 10px;
-        margin: 20px auto 20px auto;
-    }
+.dog-gallery-view {
+    width: 800px;
+    margin: 35px auto 40px auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile_pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.results {
+    display: flex;
+    width: 800px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px auto 50px auto;
+    background: #f9e5d8;
+    padding: 60px 40px;
+    text-align: center;
+    border-radius: 20px;
+
+}
+
+#info {
+    margin: auto auto;
+    width: 70%;
+}
+
+.footer {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 40px;
+}
+
+.view-profile-button {
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 5px 10px;
+    margin: 20px auto 20px auto;
+}
