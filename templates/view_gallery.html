@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block extra_css%}
 
 .gallery-images {
@@ -8,14 +7,28 @@
 
 {% endblock %}
 
+
 {% block content %}
 
-{% for galleryimage in profile.user.galleryimage_set.all %}
-    <div class="col-lg gallery-images">
-        <div class="text-center mt-2">
-            <img src="{{ galleryimage.image.url }}" class="img-thumbnail" alt="...">
-        </div>
+{% if profile.user.galleryimage_set.exists %}
+<div class="container">
+    <div class="row">
+    {% for galleryimage in profile.user.galleryimage_set.all %}
+        <div class="col-md-4">
+            <img src="{{ galleryimage.image.url }}" class="img-responsive img-thumbnail" width="350" height="350" alt="...">
+       </div>
+    {% endfor %}
+{% else %}
+<p>No more pictures yet....</p>
+{% endif %}
     </div>
-{% endfor %}
+</div>
+
+<div class="footer">
+    <a href="{% url 'profile_page' user.profile.pk %}">
+        <button class="top-buttons"> Back to Profile </button>
+    </a>
+</div>
+
 
 {% endblock %}

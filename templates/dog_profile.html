@@ -1,61 +1,48 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Meet {{dog.name}}!
 {% endblock %}
-
 {% block extra_css %}
 
-.profile_pic {
-    display: flex;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    overflow: hidden;
-    object-fit: cover;
-}
 {% endblock %}
+{% block content_nocontainer %}
 
-{% block content %}
-
-<img class="profile_pic" src="{{ dog.image.url }}">
-<h4>Hi my name is {{dog.name.capitalize}}</h4>
-<h4> Weight: {{dog.weight}} pounds</h4>
-
-{% if dog.good_with_cats %}
-    <p>I am good with cats</p>
-{% else %}
-    <p>I am not good with cats</p>
-{% endif %}
-{% if dog.good_with_kids %}
-    <p>I am good with kids</p>
-{% else %}
-    <p>I am not so great with kids</p>
-{% endif %}
-{% if dog.good_with_dogs %}
- <p>I am good with dogs</p>
-{% else %}
-    <p>I am not good with dogs</p>
-{% endif %}
-
-<h4> A little about me: {{dog.bio}} </h4>
-
-<h3> Age: {{dog.age}} old </h3>
-
-<h2> Breed: {{dog.breed.capitalize}} </h2>
-
- <p> Add photos to your photo gallery <a href="{% url 'add_dog_images' dog.pk %}">here</a></p>
-
-    {% if dog.doggalleryimage_set.exists %}
-        <p> View more pictures: </p>
-        <a href="{% url 'view_dog_gallery' dog.pk %}">
-            <img class="img-thumbnail gallery_image" alt="View Gallery" src= "{{ dog.doggalleryimage_set.first.image.url }}">
-        </a>
-    {% endif %}
-
+<div class="dog-profile">
+    <div>
+        <h4>Hi my name is {{dog.name}}!</h4>
+               <a href="{% url 'view_dog_gallery' dog.pk %}">
+        <img class="dog-pic" src="{{ dog.image.url }}" alt="Profile Picture">
+               </a>
+        {% if dog.user == request.user %}
+            <a href="{% url 'add_dog_images' dog.pk %}"><p> Add photos to {{dog.name}}'s gallery here</a></p>
+            <button class="top-buttons"> <a href="{% url 'edit_dog' dog.pk %}"> Edit Profile</button></a>
+        {% endif %}
+    </div>
+    <div class="dog-info">
+        <p> Breed: {{dog.breed}} <p>
+        <p> Age: {{dog.age}} old </p>
+        <p> Weight: {{dog.weight}} pounds</p>
+        <p> A little about me: {{dog.bio}} </p>
+        {% if dog.good_with_cats %}
+            <p>I am good with cats   <img class="icon" src="{% static '/dogsitter/pets-allowed.png' %}"></p>
+        {% else %}
+            <p>I am not good with cats <img class="icon" src="{% static '/dogsitter/no-animals.png' %}"></p>
+        {% endif %}
+        {% if dog.good_with_kids %}
+        <p>I am good with kids  <img class="icon" src="{% static '/dogsitter/kids.png' %}"></p>
+        {% else %}
+            <p>I am not so great with kids  <img class="icon" src="{% static '/dogsitter/no-children.png' %}"></p>
+        {% endif %}
+        {% if dog.good_with_dogs %}
+         <p>I am good with dogs <img class="icon" src="{% static '/dogsitter/pets-allowed.png' %}"></p>
+        {% else %}
+            <p>I am not good with dogs <img class="icon" src="{% static '/dogsitter/no-animals.png' %}"></p>
+        {% endif %}
+        <button class="top-buttons"><a href="{% url 'profile_page' dog.user.profile.pk %}">Back to Profile </a> </button>
+</div>
+</div>
 
 
-<button> <a href="{% url 'edit_dog' dog.pk %}"> Edit Profile</button></a>
 
-<p> Back to <a href = "{% url 'profile_page' dog.user.profile.pk %}">profile</a> </p>
 {% endblock %}
