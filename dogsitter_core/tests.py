@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.test import Client
 from django.contrib.auth.models import User
 
+
 class SignUpTestCase(TestCase):
     def test_signup_and_login(self):
         c = Client()
