@@ -9,15 +9,24 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.10.2
+        environment:
+          RDS_DB_NAME: circle_test
+          RDS_USERNAME: postgres
+          RDS_PASSWORD: ''
+          RDS_HOSTNAME: localhost
+          RDS_PORT: 5432
+      - image: cimg/postgres:14.6
     steps:
       - checkout
       - run:
-          name: Install Linter
-          command: pip install flake8
+          name: Install Environment
+          command: pip install -r requirements.txt
       - run:
           name: Lint
           command: flake8
-
+      - run:
+          name: Test
+          command: python manage.py test
 
 workflows:
   test-code:

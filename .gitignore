@@ -6,3 +6,4 @@ media/
 # Elastic Beanstalk Files
 
 static
+.elasticbeanstalk/
